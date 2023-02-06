@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import FeedSorterProvider from "@/hooks/FeedSorterProvider";
 
 export default function Home() {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined") return <></>;
 
   return (
     <FeedSorterProvider>
