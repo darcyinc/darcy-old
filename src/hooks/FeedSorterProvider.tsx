@@ -1,11 +1,17 @@
 import { createContext, useState } from "react";
 
-export const FeedSorterContext = createContext({
-  data: "popular",
-  setData: (_: string) => {},
-});
+interface FeedSorterContextProps {
+  data: string;
+  setData: (data: string) => void;
+}
 
-export default function FeedSorterProvider({children}: {children: React.ReactNode}) {
+export const FeedSorterContext = createContext({} as FeedSorterContextProps);
+
+export default function FeedSorterProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [data, setData] = useState("popular");
 
   return (

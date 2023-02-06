@@ -4,7 +4,7 @@ import FeedPost from "./FeedPost";
 import FeedSorter from "./FeedSorter";
 import PostComposer from "./PostComposer";
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { FeedSorterContext } from "@/hooks/FeedSorterProvider";
 
 import styles from "./index.module.scss";
@@ -16,18 +16,15 @@ export default function Feed() {
   const lastAutoFetch = useRef(Date.now());
   const timeout = useRef<NodeJS.Timeout>();
 
-  const loadMorePosts = () => {
+  const loadMorePosts = useCallback(() => {
     if (Date.now() - lastAutoFetch.current < 2000) {
       return;
     }
 
     lastAutoFetch.current = Date.now();
-    console.log("loading more posts");
 
     setPosts((posts) => [...posts, ...Array.from({ length: 5 })]);
-  };
-
-  console.log(useContext(FeedSorterContext).data);
+  }, []);
 
   // if user is at or near the bottom of the page, load more posts
   window.addEventListener("scroll", () => {
@@ -68,7 +65,7 @@ export default function Feed() {
 
       {posts.map((_, index) => (
         <FeedPost
-          key={index}
+          key={"/post/lorem-ipsum"}
           user={{
             name: "John Doe",
             handle: "johndoe",
