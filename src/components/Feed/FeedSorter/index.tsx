@@ -1,4 +1,5 @@
 import { FeedSorterContext } from "@/hooks/FeedSorterProvider";
+import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import { useContext } from "react";
 
 import styles from "./index.module.scss";
@@ -17,7 +18,8 @@ export default function FeedSorter() {
   }
 
   // TODO: open menu on click
-  const handleSortChange = () => {
+  const handleSortChange = (e: ClickOrKeyboardEvent) => {
+    if (!isSpaceOrEnter(e)) return;
     sortContext.setData(friendlyName === "Populares" ? "new" : "popular");
   };
 

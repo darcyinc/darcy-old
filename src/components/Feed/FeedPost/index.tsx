@@ -1,5 +1,7 @@
+import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import Link from "next/link";
-import React, { useCallback } from "react";
+
+import { useCallback } from "react";
 import { AiOutlineHeart, AiOutlineRetweet } from "react-icons/ai";
 import { BiCommentDetail, BiDotsHorizontalRounded } from "react-icons/bi";
 
@@ -28,53 +30,28 @@ interface FeedPostProps {
   };
 }
 
-type ClickOrKeyboardEvent =
-  | React.MouseEvent<HTMLOrSVGElement>
-  | React.KeyboardEvent<HTMLOrSVGElement>;
-
 export default function FeedPost(props: FeedPostProps) {
   const router = useRouter();
 
-  const isSpaceOrEnter = useCallback(
-    (e: React.KeyboardEvent<HTMLOrSVGElement>) => {
-      if (e.type === "click") return true;
-      return ["Enter", " "].includes(e.key);
-    },
-    []
-  );
+  const handleUserSettingsClick = useCallback((e: ClickOrKeyboardEvent) => {
+    if (!isSpaceOrEnter(e)) return;
+  }, []);
 
-  const handleUserSettingsClick = useCallback(
-    (e: ClickOrKeyboardEvent) => {
-      // @ts-expect-error
-      if (!isSpaceOrEnter(e)) return;
-    },
-    [isSpaceOrEnter]
-  );
+  const handlePostLike = useCallback((e: ClickOrKeyboardEvent) => {
+    if (!isSpaceOrEnter(e)) return;
+  }, []);
 
-  const handlePostLike = useCallback(
-    (e: ClickOrKeyboardEvent) => {
-      // @ts-expect-error
-      if (!isSpaceOrEnter(e)) return;
-    },
-    [isSpaceOrEnter]
-  );
-
-  const handlePostRepost = useCallback(
-    (e: ClickOrKeyboardEvent) => {
-      // @ts-expect-error
-      if (!isSpaceOrEnter(e)) return;
-    },
-    [isSpaceOrEnter]
-  );
+  const handlePostRepost = useCallback((e: ClickOrKeyboardEvent) => {
+    if (!isSpaceOrEnter(e)) return;
+  }, []);
 
   const handlePostComment = useCallback(
     (e: ClickOrKeyboardEvent) => {
-      // @ts-expect-error
       if (!isSpaceOrEnter(e)) return;
 
       router.push(props.postURL);
     },
-    [isSpaceOrEnter, props.postURL, router]
+    [props.postURL, router]
   );
 
   return (
