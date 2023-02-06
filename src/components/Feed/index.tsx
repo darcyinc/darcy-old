@@ -10,8 +10,10 @@ import FeedSorterProvider from "@/hooks/FeedSorterProvider";
 
 export default function Feed() {
   const [posts, setPosts] = useState(Array.from({ length: 2 }));
+  const [willLoadMorePosts, setWillLoadMorePosts] = useState(false);
 
   const lastAutoFetch = useRef(Date.now());
+  const timeout = useRef<NodeJS.Timeout>();
 
   const loadMorePosts = () => {
     if (Date.now() - lastAutoFetch.current < 2000) {
@@ -30,9 +32,31 @@ export default function Feed() {
       window.innerHeight + window.scrollY >=
       document.body.offsetHeight - 300
     ) {
-      loadMorePosts();
+      // If user is scrolling fast, wait 2 seconds before loading more posts.
+      // This will make only one request to the server.
+
+      if (!willLoadMorePosts) {
+        loadMorePosts();
+        setWillLoadMorePosts(true);
+        return;
+      }
+
+      if (timeout.current) return;
+      timeout.current = setTimeout(() => {
+        setWillLoadMorePosts(false);
+        loadMorePosts();
+
+        clearTimeout(timeout.current);
+        timeout.current = undefined;
+      }, 2000);
     }
   });
+
+  useEffect(() => {
+    return () => {
+      if (timeout.current) clearTimeout(timeout.current);
+    };
+  }, []);
 
   return (
     <FeedSorterProvider>
