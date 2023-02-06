@@ -74,7 +74,7 @@ export default function FeedPost(props: FeedPostProps) {
 
       router.push(props.postURL);
     },
-    [isSpaceOrEnter]
+    [isSpaceOrEnter, props.postURL, router]
   );
 
   return (
