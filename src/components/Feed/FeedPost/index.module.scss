@@ -40,12 +40,27 @@
             cursor: pointer;
           }
         }
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
 
       .bottom {
         display: flex;
         justify-content: space-between;
-        color: #b9b9b9;
+
+        a {
+          color: #b9b9b9;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
@@ -80,6 +95,14 @@
 
     .likeButton {
       color: #b7b7b7;
+
+      &[data-liked="true"] {
+        svg,
+        span {
+          color: #dd2f2f;
+        }
+      }
+
       &:hover {
         color: #dd2f2f;
         cursor: pointer;
@@ -87,13 +110,18 @@
           stroke-width: 35;
         }
       }
-      &[data-liked="true"] {
-        color: #dd2f2f;
-      }
     }
 
     .shareButton {
       color: #b7b7b7;
+
+      &[data-shared="true"] {
+        svg,
+        span {
+          color: #47bf94;
+        }
+      }
+
       &:hover {
         color: #47bf94;
         cursor: pointer;
