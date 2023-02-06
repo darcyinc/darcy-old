@@ -12,7 +12,7 @@ export default function Navbar() {
       <div className={styles.main}>
         <div className={styles.logo}>
           <img
-            src="https://via.placeholder.com/150"
+            src="/favicon.png"
             alt="Logo"
             draggable="false"
           />
