@@ -4,8 +4,7 @@ import FeedPost from "./FeedPost";
 import FeedSorter from "./FeedSorter";
 import PostComposer from "./PostComposer";
 
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { FeedSorterContext } from "@/hooks/FeedSorterProvider";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./index.module.scss";
 

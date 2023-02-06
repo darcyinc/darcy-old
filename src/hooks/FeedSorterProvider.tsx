@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 interface FeedSorterContextProps {
   data: string;
-  setData: (data: string) => void;
+  setData: (_data: string) => void;
 }
 
 export const FeedSorterContext = createContext({} as FeedSorterContextProps);
