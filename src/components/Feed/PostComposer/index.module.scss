@@ -1,0 +1,45 @@
+.composer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background-color: #1d2226;
+  border-radius: 16px;
+  padding: 34px 70px 34px 80px;
+  margin-top: 30px;
+
+  height: 100px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 5px;
+    width: 97%;
+  }
+
+  img {
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+
+  .fakeInput {
+    border: 1px solid #b1b1b1;
+    border-radius: 40px;
+    color: #fff;
+
+    padding: 9px 5px 9px 18px;
+    font-size: 1rem;
+    font-weight: 500;
+
+    background: none;
+    outline: none;
+    user-select: none;
+
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #ffffff3d;
+    }
+  }
+}

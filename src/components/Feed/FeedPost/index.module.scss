@@ -1,0 +1,114 @@
+.post {
+  border-radius: 16px;
+  background-color: #1d2226;
+  padding: 11px 19px 15px 19px;
+
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 15px 8px 15px 8px;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+
+    img {
+      border-radius: 50%;
+    }
+
+    .userInfo {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+      min-width: fit-content;
+      width: 100%;
+
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.03rem;
+
+        svg {
+          font-size: 1.5rem;
+          color: #b9b9b9;
+          &:hover {
+            color: #dbdbdb;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        color: #b9b9b9;
+      }
+    }
+  }
+
+  .postContent {
+    color: #fff;
+    margin-top: 15px;
+  }
+
+  .socialButtons {
+    display: flex;
+    gap: 15px;
+
+    color: #fff;
+    margin-top: 15px;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      span,
+      svg {
+        font-size: 1.05rem;
+        font-weight: 500;
+
+        @media (min-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .likeButton {
+      color: #b7b7b7;
+      &:hover {
+        color: #dd2f2f;
+        cursor: pointer;
+        svg {
+          stroke-width: 35;
+        }
+      }
+      &[data-liked="true"] {
+        color: #dd2f2f;
+      }
+    }
+
+    .shareButton {
+      color: #b7b7b7;
+      &:hover {
+        color: #47bf94;
+        cursor: pointer;
+      }
+      &[data-shared="true"] {
+        color: #47bf94;
+      }
+    }
+
+    .commentButton {
+      color: #b7b7b7;
+      &:hover {
+        color: #9c9c9c;
+        cursor: pointer;
+      }
+    }
+  }
+}
