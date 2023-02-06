@@ -1,0 +1,14 @@
+.feedSorter {
+  margin-left: auto;
+  color: #fff;
+
+  .sortBy {
+    color: #888888;
+    user-select: none;
+  }
+
+  .state:hover{
+    cursor: pointer;
+    color: #c5c5c5;
+  }
+}
