@@ -10,7 +10,6 @@ These instructions will help you get a copy of the project up and running on you
 
 - [Node.js](https://nodejs.org/en/)
 - [pnpm](https://github.com/pnpm/pnpm)
-- [make](https://www.gnu.org/software/make/)
 
 ### Installing 💾
 
