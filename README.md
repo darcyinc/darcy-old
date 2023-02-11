@@ -1,38 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Darcy Social Network 🚀
 
-## Getting Started
+Darcy is a social network that connects people from all over the world 🌎. Share your thoughts, photos, and interests with your friends and family 💬. 
 
-First, run the development server:
+## Getting Started 💻
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites 🔧
+
+- [Node.js](https://nodejs.org/en/)
+- [pnpm](https://github.com/pnpm/pnpm)
+- [make](https://www.gnu.org/software/make/)
+
+### Installing 💾
+
+1. Clone the repository:
+
+```
+git clone https://github.com/darcyinc/darcy.git
+```
+
+2. Navigate to the project directory:
+
+```
+cd darcy
+```
+
+3. Install the dependencies:
+
+```
+pnpm install
+```
+
+### Development Environment 🌳
+
+Use the following command to start the project in development mode:
+
+```
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building the Project 🏗️
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Use the following command to build the project:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+pnpm build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Running the Project 🏃‍♂️
 
-## Learn More
+Use the following command to start the project in production mode (after building):
 
-To learn more about Next.js, take a look at the following resources:
+```
+pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Built With 🛠️
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Node.js](https://github.com/nodejs/node)
+- [Next.js](https://github.com/vercel/next.js)
+- [TypeScript](https://github.com/microsoft/TypeScript)
 
-## Deploy on Vercel
+## Contributing 🤝
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We welcome contributions from the community! If you're interested in contributing, please read [CONTRIBUTING.md](https://github.com/darcy/darcy-backend/blob/development/CONTRIBUTING.md) for more information.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License 📃
+
+This project is licensed under the [Apache 2.0 License](https://github.com/darcy/darcy-backend/blob/development/LICENSE).

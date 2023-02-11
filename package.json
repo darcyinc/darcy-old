@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "author": "Davi Patricio <davipatricio2006@gmail.com",
+  "license": "Apache 2.0 License",
   "dependencies": {
     "@next/font": "13.1.6",
     "@types/node": "18.11.19",
