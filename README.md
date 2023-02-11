@@ -64,8 +64,8 @@ pnpm start
 
 ## Contributing 🤝
 
-We welcome contributions from the community! If you're interested in contributing, please read [CONTRIBUTING.md](https://github.com/darcyinc/darcy-backend/blob/development/CONTRIBUTING.md) for more information.
+We welcome contributions from the community! If you're interested in contributing, please read [CONTRIBUTING.md](https://github.com/darcyinc/darcy/blob/development/CONTRIBUTING.md) for more information.
 
 ## License 📃
 
-This project is licensed under the [Apache 2.0 License](https://github.com/darcyinc/darcy-backend/blob/development/LICENSE).
+This project is licensed under the [Apache 2.0 License](https://github.com/darcyinc/darcy/blob/development/LICENSE).
