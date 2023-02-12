@@ -24,7 +24,7 @@ export default function Navbar() {
             type="text"
             id="search"
             placeholder="Pesquisar"
-            autoComplete="false"
+            autoComplete="off"
             style={{
               ...notoSans.style,
             }}
