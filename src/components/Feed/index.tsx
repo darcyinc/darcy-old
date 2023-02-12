@@ -1,5 +1,7 @@
 "use client";
 
+import loadMoreObserver from "./loadMoreObserver";
+
 import FeedPost from "./FeedPost";
 import FeedSorter from "./FeedSorter";
 import PostComposer from "./PostComposer";
@@ -10,13 +12,22 @@ import styles from "./index.module.scss";
 
 export default function Feed() {
   const [posts, setPosts] = useState(Array.from({ length: 2 }));
-  const [willLoadMorePosts, setWillLoadMorePosts] = useState(false);
 
-  const lastAutoFetch = useRef(Date.now());
+  const lastAutoFetch = useRef<number | null>(null);
   const timeout = useRef<NodeJS.Timeout>();
 
   const loadMorePosts = useCallback(() => {
-    if (Date.now() - lastAutoFetch.current < 2000) {
+    if (timeout.current) return;
+
+    if (lastAutoFetch.current && Date.now() - lastAutoFetch.current < 2000) {
+      // If user is scrolling fast, wait 2 seconds before loading more posts.
+      // This will make only one request to the server.
+      timeout.current = setTimeout(() => {
+        clearTimeout(timeout.current);
+        timeout.current = undefined;
+
+        loadMorePosts();
+      }, 2000);
       return;
     }
 
@@ -25,37 +36,23 @@ export default function Feed() {
     setPosts((posts) => [...posts, ...Array.from({ length: 5 })]);
   }, []);
 
-  // if user is at or near the bottom of the page, load more posts
-  window.addEventListener("scroll", () => {
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 300
-    ) {
-      // If user is scrolling fast, wait 2 seconds before loading more posts.
-      // This will make only one request to the server.
-
-      if (!willLoadMorePosts) {
-        loadMorePosts();
-        setWillLoadMorePosts(true);
-        return;
-      }
-
-      if (timeout.current) return;
-      timeout.current = setTimeout(() => {
-        setWillLoadMorePosts(false);
-        loadMorePosts();
-
-        clearTimeout(timeout.current);
-        timeout.current = undefined;
-      }, 2000);
-    }
-  });
-
   useEffect(() => {
+    // if the span element "load more" is visible, try to load more posts
+    loadMoreObserver(styles.loadMore, loadMorePosts);
+
+    // If user is at or near the bottom of the page, load more posts
+    window.addEventListener("scroll", () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 300
+      )
+        loadMorePosts();
+    });
+
     return () => {
       if (timeout.current) clearTimeout(timeout.current);
     };
-  }, []);
+  }, [loadMorePosts]);
 
   return (
     <div className={styles.feed}>
@@ -64,7 +61,7 @@ export default function Feed() {
 
       {posts.map((_, index) => (
         <FeedPost
-          key={"/post/lorem-ipsum"}
+          key={`post-${index}`}
           user={{
             name: "John Doe",
             handle: "johndoe",
