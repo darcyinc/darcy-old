@@ -129,21 +129,20 @@
     width: 72px;
     height: 72px;
 
-    &.active, &:hover {
+    &.active,
+    &:hover {
       padding: 1px;
       background-color: #313131;
       border-radius: 20%;
     }
 
-    * {
-      color: #fff;
-    }
-
     svg {
+      color: #fff;
       font-size: 1.5rem;
     }
 
     p {
+      color: #fff;
       font-size: 1.03rem;
     }
   }

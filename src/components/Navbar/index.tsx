@@ -8,7 +8,11 @@ import styles from "./index.module.scss";
 
 const notoSans = Noto_Sans({ weight: ["500"], subsets: ["latin"] });
 
-export default function Navbar() {
+export interface NavbarProps {
+  active: "feed" | "trending" | "profile";
+}
+
+export default function Navbar({ active }: NavbarProps) {
   return (
     <>
       <header className={styles.container}>
@@ -38,17 +42,24 @@ export default function Navbar() {
 
       {/* only visible on mobile */}
       <footer className={styles.mobileContainer}>
-        <div className={styles.feed}>
+        <div className={`${styles.feed} ${active === "feed" && styles.active}`}>
           <MdOutlineMenuBook />
           <p>Feed</p>
         </div>
-
-        <div className={`${styles.trending} ${styles.active}`}>
+        <div
+          className={`${styles.trending} ${
+            active === "trending" && styles.active
+          }`}
+        >
           <MdShowChart />
           <p>Em alta</p>
         </div>
 
-        <div className={styles.profile}>
+        <div
+          className={`${styles.profile} ${
+            active === "profile" && styles.active
+          }`}
+        >
           <CgProfile />
           <p>Perfil</p>
         </div>
