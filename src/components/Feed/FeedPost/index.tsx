@@ -56,7 +56,9 @@ export default function FeedPost(props: FeedPostProps) {
   return (
     <div className={styles.post}>
       <div className={styles.user}>
-        <img src={props.user.avatar} alt="User" height="50" width="50" />
+        <Link href={`/${props.user.handle}`}>
+          <img src={props.user.avatar} alt="User" height="50" width="50" />
+        </Link>
         <div className={styles.userInfo}>
           <div className={styles.top}>
             <Link href={`/${props.user.handle}`}>{props.user.name}</Link>
