@@ -36,7 +36,7 @@ export default function Navbar({ active }: NavbarProps) {
         </div>
 
         <div className={styles.menu}>
-          <img src="https://source.unsplash.com/100x100/?dog" alt="Dog" />
+          <img src="https://source.unsplash.com/100x100/?dog" alt="Dog" loading="lazy" decoding="async" />
         </div>
       </header>
 
