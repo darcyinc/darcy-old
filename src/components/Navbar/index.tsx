@@ -33,7 +33,7 @@ export default function Navbar() {
       </div>
 
       <div className={styles.menu}>
-        <img src="https://via.placeholder.com/150" alt="Menu" />
+        <img src="https://source.unsplash.com/100x100/?dog" alt="Dog" />
       </div>
     </header>
   );
