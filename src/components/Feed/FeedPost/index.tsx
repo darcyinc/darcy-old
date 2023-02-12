@@ -1,11 +1,10 @@
 import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import Link from "next/link";
 
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { AiOutlineHeart, AiOutlineRetweet } from "react-icons/ai";
 import { BiCommentDetail, BiDotsHorizontalRounded } from "react-icons/bi";
-
-import { useRouter } from "next/navigation";
 
 import styles from "./index.module.scss";
 
