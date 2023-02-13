@@ -1,7 +1,7 @@
 import Providers from "./providers";
 
+import styles from "./page.module.scss";
 import "@/styles/globals.css";
-import "./globals.scss";
 
 export default function RootLayout({
   children,
@@ -20,7 +20,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className={styles.body}>
         <Providers>{children}</Providers>
       </body>
     </html>
