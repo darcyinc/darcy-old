@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-interface Account {
+export interface AccountData {
   token?: string;
   user?: {
     avatar?: string;
@@ -9,9 +9,9 @@ interface Account {
   };
 }
 
-interface AccountContextProps {
-  data: Account;
-  setData: (_data: Account) => void;
+export interface AccountContextProps {
+  data: AccountData;
+  setData: (_data: AccountData) => void;
 }
 
 export const AccountContext = createContext({} as AccountContextProps);
@@ -21,7 +21,7 @@ export default function AccountProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [data, setData] = useState({} as Account);
+  const [data, setData] = useState({} as AccountData);
 
   return (
     <AccountContext.Provider value={{ data, setData }}>

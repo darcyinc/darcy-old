@@ -1,6 +1,7 @@
 import Providers from "./providers";
 
 import "@/styles/globals.css";
+import "./globals.scss";
 
 export default function RootLayout({
   children,
