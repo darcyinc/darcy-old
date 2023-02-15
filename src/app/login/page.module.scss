@@ -1,13 +1,12 @@
 .body {
   background: url(../../assets/auth-bg.svg) no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 
   @media (max-width: 768px) {
     background: url(../../assets/auth-bg.svg) no-repeat center center fixed;
   }
 }
-
 
 .container {
   display: flex;
@@ -18,7 +17,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   height: 100vh;
   width: 100vw;
 
@@ -27,7 +26,6 @@
     border: 1px solid #5c5c5c;
     border-radius: 35px;
     padding: 42px 41px;
-
 
     @media (max-width: 768px) {
       padding: 42px 20px;
@@ -50,7 +48,7 @@
       margin-top: 35px;
 
       div {
-        .label { 
+        .label {
           display: flex;
           justify-content: space-between;
           color: #fff;
