@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 "use client";
 
 import { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
@@ -12,9 +13,7 @@ export interface ModalProps {
 
 export default function Modal({ children, onClose }: ModalProps) {
   const handleESCOrOutsideClick = useCallback(
-    (e: ClickOrKeyboardEvent) => {
-      e.preventDefault();
-
+    (e: ClickOrKeyboardEvent | KeyboardEvent) => {
       if (e.type === "keydown" && (e as React.KeyboardEvent).key !== "Escape")
         return;
 
@@ -23,31 +22,21 @@ export default function Modal({ children, onClose }: ModalProps) {
     [onClose]
   );
 
-  // remove window scroll
   useEffect(() => {
+    // remove window scroll
     document.body.style.overflow = "hidden";
+
+    document.addEventListener("keydown", handleESCOrOutsideClick);
+
     return () => {
       document.body.style.overflow = "unset";
+      document.removeEventListener("keydown", handleESCOrOutsideClick);
     };
-  }, []);
+  }, [handleESCOrOutsideClick]);
 
   return (
-    <div
-      className={styles.modalContainer}
-      onClick={handleESCOrOutsideClick}
-      onKeyDown={handleESCOrOutsideClick}
-      role="button"
-      tabIndex={0}
-    >
-      <div
-        className={styles.modal}
-        onClick={(e) => e.stopPropagation()}
-        onKeyDown={(e) => e.key === "Escape" && e.stopPropagation()}
-        role="button"
-        tabIndex={0}
-      >
-        {children}
-      </div>
+    <div className={styles.modalContainer} onClick={handleESCOrOutsideClick}>
+      <div onClick={(e) => e.stopPropagation()}>{children}</div>
     </div>
   );
 }
