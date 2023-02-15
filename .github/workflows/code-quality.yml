@@ -18,14 +18,17 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+
+    - name: Use Node.js v18
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
 
     - name: Install pnpm
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y curl
-        curl -fsSL https://get.pnpm.io/install.sh | sh
-        export PATH="$HOME/.pnpm/bin:$PATH"
+      uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
 
     - name: Install Dependencies
       run: pnpm install
