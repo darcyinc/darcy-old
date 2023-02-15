@@ -13,16 +13,25 @@ export interface ValidUserCheckProps {
 export default function ValidUserCheck({
   redirectToIfLogged,
   redirectToIfNotLogged,
-}: ValidUserCheckProps) {
+}: ValidUserCheckProps): JSX.Element {
   const account = useContext(AccountContext);
   const router = useRouter();
 
-  useEffect(() => {
-    const currentToken = localStorage.getItem("token") ?? account.data?.token;
-    if (!currentToken) {
-      if (redirectToIfNotLogged) router.replace(redirectToIfNotLogged);
+  let currentToken = "";
+  if (typeof window !== "undefined") {
+    currentToken = localStorage.getItem("token") ?? account.data?.token ?? "";
+  }
+
+  if (!currentToken) {
+    if (redirectToIfNotLogged) {
+      router.replace(redirectToIfNotLogged);
+      // @ts-expect-error
       return;
     }
+  }
+
+  useEffect(() => {
+    if (!currentToken) return;
 
     getUserFromToken(currentToken)
       .then((d) => {
