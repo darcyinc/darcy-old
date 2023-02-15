@@ -23,25 +23,36 @@ export default function Home() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleEmail = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setEmail(value);
+  const cleanupErrors = useCallback(() => {
     setEmailError("");
-
-    if (!value.includes("@") || !EMAIL_REGEX.test(value))
-      setEmailError("O campo email deve ser um email válido.");
-    if (value.length === 0) setEmailError("O campo email é obrigatório.");
-  }, []);
-
-  const handlePassword = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setPassword(value);
     setPasswordError("");
-
-    if (value.length < 8)
-      setPasswordError("A senha deve ter no mínimo 8 caracteres.");
-    if (value.length === 0) setPasswordError("O campo senha é obrigatório.");
   }, []);
+
+  const handleEmail = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setEmail(value);
+      cleanupErrors();
+
+      if (!value.includes("@") || !EMAIL_REGEX.test(value))
+        setEmailError("O campo email deve ser um email válido.");
+      if (value.length === 0) setEmailError("O campo email é obrigatório.");
+    },
+    [cleanupErrors]
+  );
+
+  const handlePassword = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setPassword(value);
+      cleanupErrors();
+
+      if (value.length < 8)
+        setPasswordError("A senha deve ter no mínimo 8 caracteres.");
+      if (value.length === 0) setPasswordError("O campo senha é obrigatório.");
+    },
+    [cleanupErrors]
+  );
 
   const handleSubmit = useCallback(
     (e: ChangeEvent<HTMLFormElement>) => {
