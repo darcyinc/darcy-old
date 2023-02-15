@@ -2,8 +2,18 @@ name: Check Code Quality
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'src/**/*'
+      - '.eslintrc.json'
+      - 'tsconfig.json'
+      - 'next.config.js'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'src/**/*'
+      - '.eslintrc.json'
+      - 'tsconfig.json'
+      - 'next.config.js'
 
 jobs:
   build:
