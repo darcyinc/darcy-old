@@ -10,12 +10,20 @@
   gap: 10px;
   padding: 35px 30px;
 
+  @media (max-width: 768px) {
+    padding: 20px 15px;
+  }
+
   .modalHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     width: 100%;
+
+    @media (max-width: 768px) {
+      width: 95%;
+    }
 
     p {
       font-size: 1.3rem;
@@ -47,12 +55,15 @@
       min-width: 500px;
       resize: none;
 
-      height: 50px;
+      min-height: 50px;
 
       overflow: hidden;
 
       @media (max-width: 768px) {
-        min-width: 300px;
+        min-width: 70px;
+        min-height: 70px;
+
+        width: 99%;
       }
 
       &,
@@ -60,6 +71,10 @@
         color: #7a7a7a;
         font-weight: bold;
         font-size: 1.3rem;
+
+        @media (max-width: 768px) {
+          font-size: 1.2rem;
+        }
       }
     }
 
