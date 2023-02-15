@@ -59,13 +59,15 @@ export default function Navbar({ active }: NavbarProps) {
 
       {/* only visible on mobile */}
       <footer className={styles.mobileContainer}>
-        <div className={`${styles.feed} ${active === "feed" && styles.active}`}>
+        <div
+          className={`${styles.feed} ${active === "feed" ? styles.active : ""}`}
+        >
           <MdOutlineMenuBook />
           <p>Feed</p>
         </div>
         <div
           className={`${styles.trending} ${
-            active === "trending" && styles.active
+            active === "trending" ? styles.active : ""
           }`}
         >
           <MdShowChart />
@@ -74,7 +76,7 @@ export default function Navbar({ active }: NavbarProps) {
 
         <div
           className={`${styles.profile} ${
-            active === "profile" && styles.active
+            active === "profile" ? styles.active : ""
           }`}
         >
           <CgProfile />
