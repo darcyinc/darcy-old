@@ -1,25 +1,22 @@
 import { AccountData } from "@/hooks/AccountProvider";
 
-export default function getUserFromToken(
-  token: string,
-  callback: (_err: any, _context?: AccountData) => void
-) {
-  fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/@me`, {
+export default async function getUserFromToken(
+  token: string
+): Promise<AccountData> {
+  const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/@me`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.errors) {
-        callback(res.errors);
-        return;
-      }
+  });
+  const json = await req.json();
 
-      callback(null, {
-        user: res,
-        token,
-      });
-    });
+  if (json.errors) {
+    throw new Error(json.errors[0].message);
+  }
+
+  return {
+    user: json,
+    token,
+  };
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { FeedSorterContext } from "@/hooks/FeedSorterProvider";
 import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import { useCallback, useContext } from "react";

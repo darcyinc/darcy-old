@@ -1,3 +1,5 @@
+'use client';
+
 import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import Link from "next/link";
 

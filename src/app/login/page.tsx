@@ -1,26 +1,20 @@
 "use client";
 
+import ValidUserCheck from "@/components/ValidUserCheck";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ChangeEvent,
   useCallback,
-  useContext,
-  useEffect,
-  useState,
+  useState
 } from "react";
 import styles from "./page.module.scss";
-import { AccountContext } from "@/hooks/AccountProvider";
-import getUserFromToken from "@/utils/getUserFromToken";
 
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function Home() {
-  if (typeof window === "undefined") return <></>;
-
   const router = useRouter();
-  const account = useContext(AccountContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,25 +65,10 @@ export default function Home() {
       });
   }, [passwordError, emailError, email, password, router]);
 
-  const token = localStorage.getItem("token") ?? account.data.token;
-  useEffect(() => {
-    if (!token) return;
-
-    getUserFromToken(token, (err, user) => {
-      if (err || !user) {
-        localStorage.removeItem("token");
-        account.setData({});
-        return router.replace("/login");
-      }
-
-      account.setData(user);
-      router.replace("/");
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- Prevent infinite re-render
-  }, [token]);
-
   return (
     <div className={styles.container}>
+      <ValidUserCheck redirectToIfLogged="/" />
+
       <div className={styles.card}>
         <h1>Login</h1>
         <p className={styles.authDescription}>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Noto_Sans } from "@next/font/google";
 
 import { AiOutlineSearch } from "react-icons/ai";
@@ -42,7 +44,10 @@ export default function Navbar({ active }: NavbarProps) {
 
         <div className={styles.menu}>
           <img
-            src={account.data.user?.avatar ?? process.env.NEXT_PUBLIC_DEFAULT_AVATAR_URL}
+            src={
+              account.data.user?.avatar ??
+              process.env.NEXT_PUBLIC_DEFAULT_AVATAR_URL
+            }
             alt="Dog"
             loading="lazy"
             decoding="async"
