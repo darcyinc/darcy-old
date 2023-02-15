@@ -1,6 +1,6 @@
 "use client";
 
-import AccountProvider from "@/hooks/AccountProvider";
+import AccountProvider from "@/context/AccountProvider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (

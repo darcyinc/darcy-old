@@ -6,7 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineMenuBook, MdShowChart } from "react-icons/md";
 
-import { AccountContext } from "@/hooks/AccountProvider";
+import { AccountContext } from "@/context/AccountProvider";
 import { useContext } from "react";
 
 import styles from "./index.module.scss";

@@ -1,7 +1,7 @@
 "use client";
 
-import AccountProvider from "@/hooks/AccountProvider";
-import FeedSorterProvider from "@/hooks/FeedSorterProvider";
+import AccountProvider from "@/context/AccountProvider";
+import FeedSorterProvider from "@/context/FeedSorterProvider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (

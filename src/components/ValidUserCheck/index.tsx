@@ -1,6 +1,6 @@
 "use client";
 
-import { AccountContext } from "@/hooks/AccountProvider";
+import { AccountContext } from "@/context/AccountProvider";
 import getUserFromToken from "@/utils/getUserFromToken";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
