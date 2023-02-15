@@ -1,0 +1,26 @@
+name: Check Code Quality
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install pnpm
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl
+        curl -fsSL https://get.pnpm.io/install.sh | sh
+        export PATH="$HOME/.pnpm/bin:$PATH"
+
+    - name: Install Dependencies
+      run: pnpm install
+
+    - name: Run Next.js Lint
+      run: npm run lint
