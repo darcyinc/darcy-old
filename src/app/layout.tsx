@@ -1,6 +1,17 @@
+import { Metadata } from "next";
 import Providers from "./providers";
 
 import "@/styles/globals.css";
+
+export const metadata: Metadata = {
+  title: "Darcy - Your feed",
+  description: "Darcy is a social media where you can share your thoughts.",
+  keywords: ["social media", "social", "media", "darcy", "darcy social media"],
+  colorScheme: "dark",
+  icons: {
+    shortcut: [{ url: "/favicon.png" }],
+  },
+};
 
 export default function RootLayout({
   children,
