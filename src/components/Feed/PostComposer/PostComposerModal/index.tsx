@@ -70,6 +70,8 @@ export default function PostComposerModal({
 
     if (postContent.length === 0) return true;
     if (postContent.length > 260) return true;
+
+    return false;
   }, [files, postContent]);
 
   const preventDefault = useCallback((e: any) => e?.preventDefault(), []);
