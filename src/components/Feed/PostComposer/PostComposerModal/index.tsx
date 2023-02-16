@@ -122,6 +122,7 @@ export default function PostComposerModal({
             id="fileInput"
             multiple
             onChange={(e) => handleFileInputChange(e.target.files)}
+            onClick={(e) => (e.currentTarget.value = "")}
             disabled={files.length >= 4}
             style={{ display: "none" }}
           />
@@ -129,29 +130,25 @@ export default function PostComposerModal({
           <div className={styles.filesContainer}>
             {files.map((file, index) => (
               <div key={index} className={styles.filePreview}>
-                <>
-                  <FaTrash
-                    onClick={() =>
-                      setFiles(files.filter((_, i) => i !== index))
-                    }
-                    onKeyDown={(e) =>
-                      isSpaceOrEnter(e) &&
-                      setFiles(files.filter((_, i) => i !== index))
-                    }
-                    role="button"
-                    tabIndex={0}
-                  />
+                <FaTrash
+                  onClick={() => setFiles(files.filter((_, i) => i !== index))}
+                  onKeyDown={(e) =>
+                    isSpaceOrEnter(e) &&
+                    setFiles(files.filter((_, i) => i !== index))
+                  }
+                  role="button"
+                  tabIndex={0}
+                />
 
-                  {file.type.startsWith("image/") ? (
-                    <img
-                      src={URL.createObjectURL(file)}
-                      alt={file.name}
-                      draggable={false}
-                    />
-                  ) : (
-                    <video src={URL.createObjectURL(file)} controls />
-                  )}
-                </>
+                {file.type.startsWith("image/") ? (
+                  <img
+                    src={URL.createObjectURL(file)}
+                    alt={file.name}
+                    draggable={false}
+                  />
+                ) : (
+                  <video src={URL.createObjectURL(file)} controls />
+                )}
               </div>
             ))}
           </div>
