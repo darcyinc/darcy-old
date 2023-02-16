@@ -8,6 +8,7 @@ import Link from "next/link";
 import {
   ChangeEvent,
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -17,6 +18,7 @@ import { AiOutlineClose, AiOutlinePicture } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 
 import styles from "./index.module.scss";
+import { AccountContext } from "@/context/AccountProvider";
 
 export interface PostComposerModalProps {
   onOpen?: () => void;
@@ -30,6 +32,7 @@ export default function PostComposerModal({
   onClose,
 }: PostComposerModalProps) {
   const [files, setFiles] = useState([] as File[]);
+  const account = useContext(AccountContext);
 
   const handleFileInputChange = (uploadedFiles: FileList | null) => {
     if (!uploadedFiles) return;
@@ -169,7 +172,10 @@ export default function PostComposerModal({
           </div>
 
           <p className={styles.publishingAs}>
-            Publicando como <Link href="/johndoe">@johndoe</Link>
+            Publicando como{" "}
+            <Link href={`/${account.data.user?.handle}`}>
+              @{account.data.user?.handle}
+            </Link>
           </p>
         </div>
       </div>
