@@ -32,6 +32,9 @@ export default function PostComposerModal({
   onClose,
 }: PostComposerModalProps) {
   const [files, setFiles] = useState([] as File[]);
+  const [postContent, setPostContent] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
   const account = useContext(AccountContext);
 
   const handleFileInputChange = (uploadedFiles: FileList | null) => {
@@ -45,10 +48,6 @@ export default function PostComposerModal({
     // Allow up to 4 files
     setFiles([...files, ...newFiles.slice(0, 4 - files.length)]);
   };
-
-  const [postContent, setPostContent] = useState("");
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const counterRef = useRef<HTMLSpanElement>(null);
 
   const autoResize = useCallback(() => {
     if (!textareaRef.current) return;
