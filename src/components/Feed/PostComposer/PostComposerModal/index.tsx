@@ -17,8 +17,8 @@ import {
 import { AiOutlineClose, AiOutlinePicture } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 
-import styles from "./index.module.scss";
 import { AccountContext } from "@/context/AccountProvider";
+import styles from "./index.module.scss";
 
 export interface PostComposerModalProps {
   onOpen?: () => void;
@@ -37,17 +37,20 @@ export default function PostComposerModal({
   const counterRef = useRef<HTMLSpanElement>(null);
   const account = useContext(AccountContext);
 
-  const handleFileInputChange = (uploadedFiles: FileList | null) => {
-    if (!uploadedFiles) return;
-    if (files.length >= 4) return;
+  const handleFileInputChange = useCallback(
+    (uploadedFiles: FileList | null) => {
+      if (!uploadedFiles) return;
+      if (files.length >= 4) return;
 
-    const newFiles = Array.from(uploadedFiles!)
-      .slice(0, 4 - files.length)
-      .filter((file) => file.size <= MAX_FILE_SIZE);
+      const newFiles = Array.from(uploadedFiles!)
+        .slice(0, 4 - files.length)
+        .filter((file) => file.size <= MAX_FILE_SIZE);
 
-    // Allow up to 4 files
-    setFiles([...files, ...newFiles.slice(0, 4 - files.length)]);
-  };
+      // Allow up to 4 files
+      setFiles([...files, ...newFiles.slice(0, 4 - files.length)]);
+    },
+    [files]
+  );
 
   const autoResize = useCallback(() => {
     if (!textareaRef.current) return;
@@ -62,6 +65,15 @@ export default function PostComposerModal({
     []
   );
 
+  const shouldDisableButton = useMemo(() => {
+    if (files.length !== 0 && postContent.length === 0) return false;
+
+    if (postContent.length === 0) return true;
+    if (postContent.length > 260) return true;
+  }, [files, postContent]);
+
+  const preventDefault = useCallback((e: any) => e?.preventDefault(), []);
+
   useEffect(() => {
     autoResize();
 
@@ -74,22 +86,15 @@ export default function PostComposerModal({
     }
   }, [autoResize, postContent]);
 
-  const shouldDisableButton = useMemo(() => {
-    if (files.length !== 0 && postContent.length === 0) return false;
-
-    if (postContent.length === 0) return true;
-    if (postContent.length > 260) return true;
-  }, [files, postContent]);
-
   return (
     <Modal onClose={onClose} onOpen={onOpen}>
       <div
         className={styles.modalContent}
-        onDragOver={(e) => e.preventDefault()}
-        onDragEnter={(e) => e.preventDefault()}
-        onDragLeave={(e) => e.preventDefault()}
+        onDragOver={preventDefault}
+        onDragEnter={preventDefault}
+        onDragLeave={preventDefault}
         onDrop={(e) => {
-          e.preventDefault();
+          preventDefault(e);
 
           handleFileInputChange(e.dataTransfer.files);
         }}
@@ -121,6 +126,7 @@ export default function PostComposerModal({
             id="fileInput"
             multiple
             onChange={(e) => handleFileInputChange(e.target.files)}
+            // Clear input value so the same file can be uploaded again
             onClick={(e) => (e.currentTarget.value = "")}
             disabled={files.length >= 4}
             style={{ display: "none" }}
@@ -161,6 +167,7 @@ export default function PostComposerModal({
             <label
               className={styles.fileInputLabel}
               htmlFor="fileInput"
+              // used to make button disabled in css
               data-disabled={files.length >= 4}
             >
               <AiOutlinePicture />
