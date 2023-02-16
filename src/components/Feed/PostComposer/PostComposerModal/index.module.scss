@@ -187,6 +187,11 @@
       display: flex;
       gap: 10px;
 
+      @media (max-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .filePreview {
         svg {
           display: block;
