@@ -13,7 +13,7 @@ export interface ValidUserCheckProps {
 export default function ValidUserCheck({
   redirectToIfLogged,
   redirectToIfNotLogged,
-}: ValidUserCheckProps): JSX.Element {
+}: ValidUserCheckProps) {
   const account = useContext(AccountContext);
   const router = useRouter();
 
@@ -25,8 +25,7 @@ export default function ValidUserCheck({
   if (!currentToken) {
     if (redirectToIfNotLogged) {
       router.replace(redirectToIfNotLogged);
-      // @ts-expect-error
-      return;
+      return null;
     }
   }
 
@@ -48,5 +47,5 @@ export default function ValidUserCheck({
     // eslint-disable-next-line react-hooks/exhaustive-deps -- Prevent infinite re-render
   }, []);
 
-  return <></>;
+  return null;
 }
