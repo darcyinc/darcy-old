@@ -128,7 +128,7 @@ export default function PostComposerModal({
 
           <div className={styles.filesContainer}>
             {files.map((file, index) => (
-              <div key={index} className={styles.filePreview}>
+              <div key={file.name} className={styles.filePreview}>
                 <FaTrash
                   onClick={() => setFiles(files.filter((_, i) => i !== index))}
                   onKeyDown={(e) =>
