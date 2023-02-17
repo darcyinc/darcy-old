@@ -6,9 +6,10 @@ import { AiOutlineSend } from "react-icons/ai";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
 
-import styles from "./index.module.scss";
-import { FaTrash } from "react-icons/fa";
 import isSpaceOrEnter from "@/utils/isSpaceOrEnter";
+import { FaTrash } from "react-icons/fa";
+
+import styles from "./index.module.scss";
 
 const MAX_FILE_SIZE = 100000000; // 100 MB in bytes
 
@@ -131,29 +132,31 @@ export default function PostComposer() {
         </button>
       </div>
 
-      <div className={styles.filesContainer}>
-        {files.map((file, index) => (
-          <div key={file.name} className={styles.filePreview}>
-            <FaTrash
-              onClick={() => handleImageDelete(index)}
-              onKeyDown={(e) => isSpaceOrEnter(e) && handleImageDelete(index)}
-              role="button"
-              tabIndex={0}
-            />
-
-            {file.type.startsWith("image/") ? (
-              <img
-                src={URL.createObjectURL(file)}
-                alt={file.name}
-                draggable={false}
+      {files.length !== 0 && (
+        <div className={styles.filesContainer}>
+          {files.map((file, index) => (
+            <div key={file.name} className={styles.filePreview}>
+              <FaTrash
+                onClick={() => handleImageDelete(index)}
+                onKeyDown={(e) => isSpaceOrEnter(e) && handleImageDelete(index)}
+                role="button"
+                tabIndex={0}
               />
-            ) : (
-              // eslint-disable-next-line jsx-a11y/media-has-caption
-              <video src={URL.createObjectURL(file)} controls />
-            )}
-          </div>
-        ))}
-      </div>
+
+              {file.type.startsWith("image/") ? (
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt={file.name}
+                  draggable={false}
+                />
+              ) : (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
+                <video src={URL.createObjectURL(file)} controls />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

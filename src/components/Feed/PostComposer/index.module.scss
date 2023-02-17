@@ -181,21 +181,15 @@
 
   .filesContainer {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 
     margin-top: 10px;
 
     width: 100%;
 
-    // break if flex container is too small[
-    flex-wrap: wrap;
-
-    @media (max-width: 768px) {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-
     .filePreview {
+      // Delete button
       svg {
         display: block;
         margin-bottom: 7px;
