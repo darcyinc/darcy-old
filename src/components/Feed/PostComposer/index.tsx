@@ -1,17 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-
 import { AiOutlineSend } from "react-icons/ai";
+import { FaTrash } from "react-icons/fa";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
-
 import isSpaceOrEnter from "@/utils/isSpaceOrEnter";
-import { FaTrash } from "react-icons/fa";
-
 import styles from "./index.module.scss";
 
-const MAX_FILE_SIZE = 100000000; // 100 MB in bytes
+const MAX_FILE_SIZE = 100_000_000; // 100 MB in bytes
 
 export default function PostComposer() {
   const [files, setFiles] = useState([] as File[]);
@@ -67,9 +64,7 @@ export default function PostComposer() {
     if (files.length !== 0 && postContent.length === 0) return false;
 
     if (postContent.length === 0) return true;
-    if (postContent.length > 260) return true;
-
-    return false;
+    return postContent.length > 260;
   }, [files, postContent]);
 
   const handleImageDelete = useCallback((index: number) => {
@@ -81,22 +76,20 @@ export default function PostComposer() {
       <div className={styles.header}>
         <div className={styles.main}>
           <img
-            src="https://via.placeholder.com/150"
             alt="User avatar"
             height="60"
+            src="https://via.placeholder.com/150"
             width="60"
           />
           <textarea
+            onChange={handleChange}
             placeholder="O que você está pensando?"
             ref={textareaRef}
             value={postContent}
-            onChange={handleChange}
           />
         </div>
-
         <span ref={counterRef}>{postContent.length}/260</span>
       </div>
-
       <div className={styles.footer}>
         <div className={styles.options}>
           <div
@@ -109,49 +102,48 @@ export default function PostComposer() {
             <TbWorld />
             <span>Todos podem responder</span>
           </div>
-
           <input
-            type="file"
             accept=".png, .jpg, .jpeg, .gif, .mp4, .webm, .mov, .avi"
+            disabled={files.length >= 4}
             id="fileInput"
             multiple
             onChange={(e) => handleFileInputChange(e.target.files)}
+            style={{ display: "none", visibility: "hidden" }}
+            type="file"
             // Clear input value so the same file can be uploaded again
             onClick={(e) => (e.currentTarget.value = "")}
-            disabled={files.length >= 4}
-            style={{ display: "none", visibility: "hidden" }}
           />
-
           <label htmlFor="fileInput">
             <MdAddPhotoAlternate data-disabled={files.length >= 4} />
           </label>
         </div>
-
-        <button className={styles.send} disabled={shouldDisableButton}>
+        <button
+          className={styles.send}
+          disabled={shouldDisableButton}
+          type="submit"
+        >
           <AiOutlineSend />
         </button>
       </div>
-
       {files.length !== 0 && (
         <div className={styles.filesContainer}>
           {files.map((file, index) => (
-            <div key={file.name} className={styles.filePreview}>
+            <div className={styles.filePreview} key={file.name}>
               <FaTrash
                 onClick={() => handleImageDelete(index)}
                 onKeyDown={(e) => isSpaceOrEnter(e) && handleImageDelete(index)}
                 role="button"
                 tabIndex={0}
               />
-
               {file.type.startsWith("image/") ? (
                 <img
-                  src={URL.createObjectURL(file)}
                   alt={file.name}
                   draggable={false}
+                  src={URL.createObjectURL(file)}
                 />
               ) : (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
-                <video src={URL.createObjectURL(file)} controls />
+                <video controls src={URL.createObjectURL(file)} />
               )}
             </div>
           ))}

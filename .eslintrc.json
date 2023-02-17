@@ -1,15 +1,40 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "neon/common",
+    "neon/browser",
+    "neon/node",
+    "neon/typescript",
+    "neon/react",
+    "neon/next",
+    "neon/edge",
+    "neon/prettier"
   ],
   "plugins": [
     "jsx-a11y"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": [
+    "**/dist/*"
+  ],
   "rules": {
+    "@typescript-eslint/consistent-type-definitions": "off",
     "@next/next/no-img-element": "off",
     "@next/next/no-page-custom-font": "off",
-    "react-hooks/rules-of-hooks": "off",
+    "promise/prefer-await-to-then": "off",
+    "react/jsx-sort-props": "off",
+    "no-warning-comments": "off",
+    "unicorn/no-unsafe-regex": "off",
+    "prefer-named-capture-group": "off",
+    "id-length": "off",
     "no-unused-vars": [
       "error",
       {

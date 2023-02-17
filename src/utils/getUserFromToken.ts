@@ -1,4 +1,4 @@
-import { AccountData } from "@/context/AccountProvider";
+import type { AccountData } from "@/context/AccountProvider";
 
 export default async function getUserFromToken(
   token: string

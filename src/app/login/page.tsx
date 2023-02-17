@@ -1,18 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useCallback, useState } from "react";
-import dynamic from "next/dynamic";
-
-const ValidUserCheck = dynamic(() => import("@/components/ValidUserCheck"), {
-  ssr: false,
-});
-
+import type { ChangeEvent } from "react";
+import { useCallback, useState } from "react";
 import styles from "./page.module.scss";
 
+const ValidUserCheck = dynamic(
+  async () => import("@/components/ValidUserCheck"),
+  {
+    ssr: false,
+  }
+);
+
 const EMAIL_REGEX =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  /^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z-]+\.)+[A-Za-z]{2,}))$/;
 
 export default function Home() {
   const router = useRouter();
@@ -55,29 +58,36 @@ export default function Home() {
   );
 
   const handleSubmit = useCallback(
-    (e: ChangeEvent<HTMLFormElement>) => {
+    async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       if (passwordError || emailError) return;
 
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/users/login`, {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((d) => {
-          if (d.errors?.[0]) {
-            setEmailError(d.errors[0].message);
-            setPasswordError(d.errors[0].message);
-            return;
+      try {
+        const req = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/users/login`,
+          {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
+        );
+        const res = await req.json();
 
-          localStorage.setItem("token", d.token);
-          router.push("/");
-        });
+        if (res.errors?.[0]) {
+          setEmailError(res.errors[0].message);
+          setPasswordError(res.errors[0].message);
+          return;
+        }
+
+        localStorage.setItem("token", res.token);
+        router.push("/");
+      } catch {
+        setEmailError("Ocorreu um erro ao tentar se autenticar.");
+        setPasswordError("Ocorreu um erro ao tentar se autenticar.");
+      }
     },
     [passwordError, emailError, email, password, router]
   );
@@ -97,19 +107,19 @@ export default function Home() {
             <div className={styles.label}>
               <label htmlFor="email">Email</label>
               {emailError && (
-                <label htmlFor="email" className={styles.error}>
+                <label className={styles.error} htmlFor="email">
                   {emailError}
                 </label>
               )}
             </div>
 
             <input
-              type="email"
-              name="email"
               id="email"
-              placeholder="me@example.com"
-              value={email}
+              name="email"
               onChange={handleEmail}
+              placeholder="me@example.com"
+              type="email"
+              value={email}
             />
           </div>
 
@@ -117,26 +127,25 @@ export default function Home() {
             <div className={styles.label}>
               <label htmlFor="password">Senha</label>
               {passwordError && (
-                <label htmlFor="password" className={styles.error}>
+                <label className={styles.error} htmlFor="password">
                   {passwordError}
                 </label>
               )}
             </div>
 
             <input
-              type="password"
-              name="password"
               id="password"
-              placeholder="********"
-              value={password}
+              name="password"
               onChange={handlePassword}
+              placeholder="********"
+              type="password"
+              value={password}
             />
           </div>
 
           <div className={styles.actions}>
             <button
               className={styles.login}
-              type="submit"
               disabled={
                 emailError.length > 0 ||
                 passwordError.length > 0 ||
@@ -145,6 +154,7 @@ export default function Home() {
                 password.length < 8 ||
                 !email.includes("@")
               }
+              type="submit"
             >
               Autenticar-se
             </button>

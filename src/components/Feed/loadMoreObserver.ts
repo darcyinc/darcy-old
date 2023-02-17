@@ -1,3 +1,5 @@
+/* eslint-disable promise/prefer-await-to-callbacks */
+
 export default function loadMoreObserver(
   className: string,
   callback: () => void
@@ -6,11 +8,12 @@ export default function loadMoreObserver(
   if (!loadMore) return;
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    for (const entry of entries) {
       if (entry.isIntersecting) {
         callback();
+        return;
       }
-    });
+    }
   });
 
   observer.observe(loadMore!);

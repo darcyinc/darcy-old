@@ -1,14 +1,12 @@
 "use client";
 
-import loadMoreObserver from "./loadMoreObserver";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import FeedPost from "./FeedPost";
 import FeedSorter from "./FeedSorter";
 import PostComposer from "./PostComposer";
-
-import { useCallback, useEffect, useRef, useState } from "react";
-
 import styles from "./index.module.scss";
+import loadMoreObserver from "./loadMoreObserver";
 
 export default function Feed() {
   const [posts, setPosts] = useState(Array.from({ length: 2 }));
@@ -19,7 +17,7 @@ export default function Feed() {
   const loadMorePosts = useCallback(() => {
     if (timeout.current) return;
 
-    if (lastAutoFetch.current && Date.now() - lastAutoFetch.current < 2000) {
+    if (lastAutoFetch.current && Date.now() - lastAutoFetch.current < 2_000) {
       // If user is scrolling fast, wait 2 seconds before loading more posts.
       // This will make only one request to the server.
       timeout.current = setTimeout(() => {
@@ -27,7 +25,7 @@ export default function Feed() {
         timeout.current = undefined;
 
         loadMorePosts();
-      }, 2000);
+      }, 2_000);
       return;
     }
 
@@ -61,21 +59,21 @@ export default function Feed() {
 
       {posts.map((_, index) => (
         <FeedPost
-          key={`post-${index}`}
-          user={{
-            name: "John Doe",
-            handle: "johndoe",
-            avatar: `https://i.pravatar.cc/150?img=${index}`,
-          }}
-          postContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl eget nisl."
-          postCreationDate={new Date()}
-          postURL="/post/lorem-ipsum"
-          likes={1}
-          reposts={1}
           comments={1}
           data={{
             hasLiked: false,
             hasReposted: false,
+          }}
+          key={`post-${index}`}
+          likes={1}
+          postContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel ultricies lacinia, nunc nisl aliquet nisl, eget aliquet nisl nisl eget nisl."
+          postCreationDate={new Date()}
+          postURL="/post/lorem-ipsum"
+          reposts={1}
+          user={{
+            name: "John Doe",
+            handle: "johndoe",
+            avatar: `https://i.pravatar.cc/150?img=${index}`,
           }}
         />
       ))}
@@ -83,8 +81,8 @@ export default function Feed() {
       <span
         className={styles.loadMore}
         onClick={loadMorePosts}
-        role="button"
         onKeyDown={loadMorePosts}
+        role="button"
         tabIndex={0}
       >
         Clique para carregar mais posts

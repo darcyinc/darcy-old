@@ -1,9 +1,9 @@
 "use client";
 
-import { FeedSorterContext } from "@/context/FeedSorterProvider";
-import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import { useCallback, useContext } from "react";
-
+import { FeedSorterContext } from "@/context/FeedSorterProvider";
+import type { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
+import isSpaceOrEnter from "@/utils/isSpaceOrEnter";
 import styles from "./index.module.scss";
 
 export default function FeedSorter() {

@@ -1,20 +1,17 @@
 "use client";
 
 import { Noto_Sans } from "@next/font/google";
-
+import { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineMenuBook, MdShowChart } from "react-icons/md";
-
 import { AccountContext } from "@/context/AccountProvider";
-import { useContext } from "react";
-
 import styles from "./index.module.scss";
 
 const notoSans = Noto_Sans({ weight: ["500"], subsets: ["latin"] });
 
 export interface NavbarProps {
-  active: "feed" | "trending" | "profile";
+  active: "feed" | "profile" | "trending";
 }
 
 export default function Navbar({ active }: NavbarProps) {
@@ -25,33 +22,33 @@ export default function Navbar({ active }: NavbarProps) {
       <header className={styles.container}>
         <div className={styles.main}>
           <div className={styles.logo}>
-            <img src="/favicon.png" alt="Logo" draggable="false" />
+            <img alt="Logo" draggable="false" src="/favicon.png" />
           </div>
 
           <div className={styles.search}>
             <AiOutlineSearch />
             <input
-              type="text"
+              autoComplete="off"
               id="search"
               placeholder="Pesquisar"
-              autoComplete="off"
               style={{
                 ...notoSans.style,
               }}
+              type="text"
             />
           </div>
         </div>
 
         <div className={styles.menu}>
           <img
+            alt="Dog"
+            decoding="async"
+            height="100"
+            loading="lazy"
             src={
               account.data.user?.avatar ??
               process.env.NEXT_PUBLIC_DEFAULT_AVATAR_URL
             }
-            alt="Dog"
-            loading="lazy"
-            decoding="async"
-            height="100"
             width="100"
           />
         </div>

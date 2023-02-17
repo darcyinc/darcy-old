@@ -1,8 +1,7 @@
-import Providers from "./providers";
-
-import styles from "./page.module.scss";
 import "@/styles/globals.css";
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import styles from "./page.module.scss";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Darcy - Login",

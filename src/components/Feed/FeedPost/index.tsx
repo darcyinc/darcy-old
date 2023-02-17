@@ -1,33 +1,32 @@
 'use client';
 
-import isSpaceOrEnter, { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import Link from "next/link";
-
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { AiOutlineHeart, AiOutlineRetweet } from "react-icons/ai";
 import { BiCommentDetail, BiDotsHorizontalRounded } from "react-icons/bi";
-
+import isSpaceOrEnter from "@/utils/isSpaceOrEnter";
+import type { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import styles from "./index.module.scss";
 
-interface FeedPostProps {
-  user: {
-    name: string;
-    handle: string;
-    avatar: string;
-  };
-
-  postContent: string;
-  postCreationDate: Date;
-  postURL: string;
-
-  likes: number;
-  reposts: number;
+type FeedPostProps = {
   comments: number;
 
   data: {
     hasLiked: boolean;
     hasReposted: boolean;
+  };
+  likes: number;
+  postContent: string;
+
+  postCreationDate: Date;
+  postURL: string;
+  reposts: number;
+
+  user: {
+    avatar: string;
+    handle: string;
+    name: string;
   };
 }
 
@@ -35,15 +34,15 @@ export default function FeedPost(props: FeedPostProps) {
   const router = useRouter();
 
   const handleUserSettingsClick = useCallback((e: ClickOrKeyboardEvent) => {
-    if (!isSpaceOrEnter(e)) return;
+    if (!isSpaceOrEnter(e)) return null;
   }, []);
 
   const handlePostLike = useCallback((e: ClickOrKeyboardEvent) => {
-    if (!isSpaceOrEnter(e)) return;
+    if (!isSpaceOrEnter(e)) return null;
   }, []);
 
   const handlePostRepost = useCallback((e: ClickOrKeyboardEvent) => {
-    if (!isSpaceOrEnter(e)) return;
+    if (!isSpaceOrEnter(e)) return null;
   }, []);
 
   const handlePostComment = useCallback(
@@ -60,12 +59,12 @@ export default function FeedPost(props: FeedPostProps) {
       <div className={styles.user}>
         <Link href={`/${props.user.handle}`}>
           <img
-            src={props.user.avatar}
             alt="User"
-            height="50"
-            width="50"
-            loading="lazy"
             decoding="async"
+            height="50"
+            loading="lazy"
+            src={props.user.avatar}
+            width="50"
           />
         </Link>
         <div className={styles.userInfo}>

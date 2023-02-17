@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
-interface FeedSorterContextProps {
+type FeedSorterContextProps = {
   data: string;
-  setData: (_data: string) => void;
-}
+  setData(_data: string): void;
+};
 
 export const FeedSorterContext = createContext({} as FeedSorterContextProps);
 
@@ -14,8 +14,10 @@ export default function FeedSorterProvider({
 }) {
   const [data, setData] = useState("popular");
 
+  const value = useMemo(() => ({ data, setData }), [data, setData]);
+
   return (
-    <FeedSorterContext.Provider value={{ data, setData }}>
+    <FeedSorterContext.Provider value={value}>
       {children}
     </FeedSorterContext.Provider>
   );
