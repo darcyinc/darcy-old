@@ -2,45 +2,212 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 10px;
 
   background-color: #1d2226;
   border-radius: 16px;
-  padding: 34px 70px 34px 80px;
+  padding: 24px;
   margin-top: 30px;
 
-  height: 100px;
+  height: fit-content;
   width: 100%;
 
   @media (max-width: 768px) {
-    padding: 5px;
+    padding: 12px;
     margin-top: 10px;
     width: 97%;
   }
 
-  img {
-    border-radius: 50%;
-    border: 1px solid black;
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+
+    .main {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+
+      img {
+        border-radius: 50%;
+        border: 1px solid black;
+      }
+
+      textarea {
+        color: #fff;
+        border: 1px solid #b1b1b1;
+        border-radius: 10px;
+
+        background: none;
+        outline: none;
+        resize: none;
+        overflow: hidden;
+
+        font-size: 1rem;
+        padding: 7px 20px 10px 20px;
+
+        min-height: 40px;
+        width: 100%;
+
+        margin-top: auto;
+        margin-bottom: auto;
+
+        @media (max-width: 768px) {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          padding: 10px;
+          min-height: 70px;
+        }
+
+        &::placeholder {
+          color: #7a7a7a;
+          font-size: 1rem;
+
+          @media (max-width: 768px) {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    // Post length counter
+    span {
+      transition: all 0.3s ease-in-out;
+    }
   }
 
-  .fakeInput {
-    border: 1px solid #b1b1b1;
-    border-radius: 40px;
-    color: #fff;
+  .footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
 
-    padding: 9px 5px 9px 18px;
-    font-size: 1rem;
-    font-weight: 500;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
-    background: none;
-    outline: none;
-    user-select: none;
+    * {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      .privacy {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        border: 1px solid #328eda;
+        border-radius: 16px;
+        padding: 5px 10px;
+
+        // Privacy icon
+        svg {
+          color: #328eda;
+          font-size: 1.3rem;
+
+          &[data-private="true"] {
+            color: tomato;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          border: 1px solid #025ce2;
+          background-color: #7e7e7e3d;
+        }
+      }
+
+      // Add media button
+      > label > svg {
+        color: #328eda;
+        font-size: 1.5rem;
+        margin-top: 2px;
+
+        &:hover {
+          cursor: pointer;
+          color: #025ce2;
+        }
+
+        &[data-disabled="true"] {
+          color: #797979;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    button.send {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background-color: #328eda;
+      border-radius: 50%;
+      color: #fff;
+
+      border: none;
+
+      text-align: center;
+      margin-left: auto;
+
+      padding: 8px;
+
+      @media (max-width: 768px) {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+
+      &:hover {
+        background-color: #025ce2;
+        cursor: pointer;
+      }
+
+      svg {
+        font-size: 1.5rem;
+      }
+
+      &[disabled] {
+        background-color: #7e7e7e3d;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .filesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 10px;
 
     width: 100%;
 
-    &:hover {
-      cursor: pointer;
-      background-color: #ffffff3d;
+    .filePreview {
+      // Delete button
+      svg {
+        display: block;
+        margin-bottom: 7px;
+        color: tomato;
+
+        &:hover {
+          cursor: pointer;
+          color: red;
+        }
+      }
+
+      img,
+      video {
+        object-fit: cover;
+        max-width: 200px;
+        max-height: 150px;
+        border-radius: 10px;
+      }
     }
   }
 }
