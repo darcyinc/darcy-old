@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
+import getUserFromToken from "@/api/getUserFromToken";
 import { AccountContext } from "@/context/AccountProvider";
-import getUserFromToken from "@/utils/getUserFromToken";
 
 export interface ValidUserCheckProps {
   redirectToIfLogged?: string;
@@ -29,6 +29,7 @@ export default function ValidUserCheck({
       })
       .catch(() => {
         localStorage.removeItem("token");
+        window.dispatchEvent(new Event("storage"));
         account.setData({});
         if (redirectToIfNotLogged) router.replace(redirectToIfNotLogged);
       });

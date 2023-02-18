@@ -64,17 +64,8 @@ export default function Home() {
       if (passwordError || emailError) return;
 
       try {
-        const req = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/users/login`,
-          {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const res = await req.json();
+        const doUserLogin = (await import("@/api/doUserLogin")).default;
+        const res = await doUserLogin({ email, password });
 
         if (res.errors?.[0]) {
           setEmailError(res.errors[0].message);
@@ -83,6 +74,7 @@ export default function Home() {
         }
 
         localStorage.setItem("token", res.token);
+        window.dispatchEvent(new Event("storage"));
         router.push("/");
       } catch {
         setEmailError("Ocorreu um erro ao tentar se autenticar.");

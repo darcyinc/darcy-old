@@ -71,6 +71,13 @@ export default function PostComposer() {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   }, []);
 
+  const handleSend = useCallback(async () => {
+    if (shouldDisableButton) return;
+
+    const createPost = (await import("@/api/createPost")).default;
+    createPost(postContent, files);
+  }, [files, postContent, shouldDisableButton]);
+
   return (
     <div className={styles.composer}>
       <div className={styles.header}>
@@ -121,6 +128,7 @@ export default function PostComposer() {
           className={styles.send}
           disabled={shouldDisableButton}
           type="submit"
+          onClick={handleSend}
         >
           <AiOutlineSend />
         </button>
