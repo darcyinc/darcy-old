@@ -8,7 +8,11 @@ import { MdOutlineMenuBook, MdShowChart } from "react-icons/md";
 import { AccountContext } from "@/context/AccountProvider";
 import styles from "./index.module.scss";
 
-const notoSans = Noto_Sans({ weight: ["500"], subsets: ["latin"] });
+const notoSans = Noto_Sans({
+  weight: ["500"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export interface NavbarProps {
   active: "feed" | "profile" | "trending";
