@@ -10,6 +10,7 @@ specifiers:
   eslint-config-neon: ^0.1.40
   eslint-config-next: 13.1.6
   eslint-plugin-jsx-a11y: ^6.7.1
+  eslint-plugin-validate-jsx-nesting: ^0.1.0
   google: link:@next/font/google
   next: 13.1.7-canary.16
   react: 18.2.0
@@ -37,6 +38,7 @@ devDependencies:
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   eslint-plugin-jsx-a11y: 6.7.1_eslint@8.33.0
+  eslint-plugin-validate-jsx-nesting: 0.1.0_eslint@8.33.0
 
 packages:
 
@@ -1815,6 +1817,15 @@ packages:
       strip-indent: 3.0.0
     dev: false
 
+  /eslint-plugin-validate-jsx-nesting/0.1.0_eslint@8.33.0:
+    resolution: {integrity: sha512-cEFjl8bFBpWNP4hVyy3oRGKAyNH0WqxAVjjrfkvhD4ciqCrSvkDuYZqGZ7PkZb5XE76asHPxyuW2f9N2I1cSsg==}
+    peerDependencies:
+      eslint: '>=4.0.0'
+    dependencies:
+      eslint: 8.33.0
+      validate-html-nesting: 1.2.1
+    dev: true
+
   /eslint-plugin-vue/9.9.0_eslint@8.33.0:
     resolution: {integrity: sha512-YbubS7eK0J7DCf0U2LxvVP7LMfs6rC6UltihIgval3azO3gyDwEGVgsCMe1TmDiEkl6GdMKfRpaME6QxIYtzDQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
@@ -3360,6 +3371,10 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
+
+  /validate-html-nesting/1.2.1:
+    resolution: {integrity: sha512-T1ab131NkP3BfXB7KUSgV7Rhu81R2id+L6NaJ7NypAAG5iV6gXnPpQE5RK1fvb+3JYsPTL+ihWna5sr5RN9gaQ==}
+    dev: true
 
   /validate-npm-package-license/3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}

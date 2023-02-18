@@ -12,7 +12,8 @@
     "neon/prettier"
   ],
   "plugins": [
-    "jsx-a11y"
+    "jsx-a11y",
+    "validate-jsx-nesting"
   ],
   "settings": {
     "react": {
@@ -35,6 +36,7 @@
     "unicorn/no-unsafe-regex": "off",
     "prefer-named-capture-group": "off",
     "id-length": "off",
+    "validate-jsx-nesting/no-invalid-jsx-nesting": "error",
     "no-unused-vars": [
       "error",
       {
