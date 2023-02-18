@@ -21,11 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <style>{`*{font-family: ${inter.style.fontFamily}}`}</style>
-      </head>
-
+    <html lang="en" style={{ fontFamily: inter.style.fontFamily }}>
       <body>
         <Providers>{children}</Providers>
       </body>

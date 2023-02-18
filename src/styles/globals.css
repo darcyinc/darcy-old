@@ -2,9 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #fff;
 }
 
 body {
   background: #000;
+}
+
+/* These elements don't inherit font-family */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
 }
