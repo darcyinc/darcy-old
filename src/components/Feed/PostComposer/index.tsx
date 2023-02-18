@@ -11,6 +11,9 @@ import styles from "./index.module.scss";
 const MAX_FILE_SIZE = 100_000_000; // 100 MB in bytes
 
 export default function PostComposer() {
+  const [replyPrivacy, setReplyPrivacy] = useState<"everyone" | "following">(
+    "everyone"
+  );
   const [files, setFiles] = useState([] as File[]);
   const [postContent, setPostContent] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -75,8 +78,14 @@ export default function PostComposer() {
     if (shouldDisableButton) return;
 
     const createPost = (await import("@/api/createPost")).default;
-    createPost(postContent, files);
-  }, [files, postContent, shouldDisableButton]);
+    createPost({ content: postContent, replyPrivacy, files });
+  }, [files, replyPrivacy, postContent, shouldDisableButton]);
+
+  const handleChangePrivacy = useCallback(() => {
+    setReplyPrivacy((prevPrivacy) =>
+      prevPrivacy === "everyone" ? "following" : "everyone"
+    );
+  }, []);
 
   return (
     <div className={styles.composer}>
@@ -90,7 +99,7 @@ export default function PostComposer() {
           />
           <textarea
             onChange={handleChange}
-            placeholder="O que você está pensando?"
+            placeholder="No que você está pensando?"
             ref={textareaRef}
             value={postContent}
           />
@@ -107,7 +116,14 @@ export default function PostComposer() {
             tabIndex={0}
           >
             <TbWorld />
-            <span>Todos podem responder</span>
+            <span
+              onClick={handleChangePrivacy}
+              onKeyDown={(e) => isSpaceOrEnter(e) && handleChangePrivacy()}
+              role="button"
+              tabIndex={0}
+            >
+              {replyPrivacy === "everyone" ? "Todos" : "Seguindo"}
+            </span>
           </div>
           <input
             accept=".png, .jpg, .jpeg, .gif, .mp4, .webm, .mov, .avi"

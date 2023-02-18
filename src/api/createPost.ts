@@ -1,17 +1,26 @@
 import { axios } from "./axios";
 
-interface PostData {
+interface CreatePostData {
   content: string;
   files: string[];
+  replyPrivacy: "everyone" | "following";
 }
 
-const doRequest = (finalData: PostData) => {
+export interface PostData {
+  content: string;
+  files: File[];
+  replyPrivacy: "everyone" | "following";
+}
+
+const doRequest = (finalData: CreatePostData) => {
   axios.post("/posts", finalData).then(console.log).catch(console.log);
 };
 
-export default function createPost(content: string, files: File[]) {
-  const finalData: PostData = {
+export default function createPost(data: PostData) {
+  const { content, files, replyPrivacy } = data;
+  const finalData: CreatePostData = {
     content,
+    replyPrivacy,
     files: [],
   };
 
