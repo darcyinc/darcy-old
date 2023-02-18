@@ -61,8 +61,6 @@ export default function PostComposer() {
     }
   }, [postContent, autoResize]);
 
-  const handlePrivacyChange = useCallback(() => {}, []);
-
   const shouldDisableButton = useMemo(() => {
     if (files.length !== 0 && postContent.length === 0) return false;
 
@@ -81,7 +79,7 @@ export default function PostComposer() {
     createPost({ content: postContent, replyPrivacy, files });
   }, [files, replyPrivacy, postContent, shouldDisableButton]);
 
-  const handleChangePrivacy = useCallback(() => {
+  const handlePrivacyChange = useCallback(() => {
     setReplyPrivacy((prevPrivacy) =>
       prevPrivacy === "everyone" ? "following" : "everyone"
     );
@@ -114,17 +112,10 @@ export default function PostComposer() {
             onKeyDown={handlePrivacyChange}
             role="button"
             tabIndex={0}
+            style={{ cursor: "pointer", userSelect: "none" }}
           >
             <TbWorld />
-            <span
-              onClick={handleChangePrivacy}
-              onKeyDown={(e) => isSpaceOrEnter(e) && handleChangePrivacy()}
-              role="button"
-              tabIndex={0}
-              style={{ cursor: "pointer", userSelect: "none" }}
-            >
-              {replyPrivacy === "everyone" ? "Todos" : "Seguindo"}
-            </span>
+            <span>{replyPrivacy === "everyone" ? "Todos" : "Seguindo"}</span>
           </div>
           <input
             accept=".png, .jpg, .jpeg, .gif, .mp4, .webm, .mov, .avi"
