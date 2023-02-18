@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #000;
-}
-
 /* These elements don't inherit font-family */
 input,
 select,

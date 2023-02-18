@@ -1,7 +1,7 @@
-import "@/styles/globals.css";
+import "@/styles/reset.css";
 import { Inter } from "@next/font/google";
 import type { Metadata } from "next";
-import styles from "./page.module.scss";
+import "./globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" style={{ fontFamily: inter.style.fontFamily }}>
-      <body className={styles.body}>
+    <html lang="en">
+      <body style={{ fontFamily: inter.style.fontFamily }}>
         <Providers>{children}</Providers>
       </body>
     </html>
