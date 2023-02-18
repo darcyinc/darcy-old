@@ -107,6 +107,11 @@
         border-radius: 16px;
         padding: 5px 10px;
 
+        &:hover {
+          border: 1px solid #025ce2;
+          background-color: #7e7e7e3d;
+        }
+
         // Privacy icon
         svg {
           color: #328eda;
@@ -115,12 +120,6 @@
           &[data-private="true"] {
             color: tomato;
           }
-        }
-
-        &:hover {
-          cursor: pointer;
-          border: 1px solid #025ce2;
-          background-color: #7e7e7e3d;
         }
       }
 

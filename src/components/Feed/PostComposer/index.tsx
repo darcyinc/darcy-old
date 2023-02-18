@@ -121,6 +121,7 @@ export default function PostComposer() {
               onKeyDown={(e) => isSpaceOrEnter(e) && handleChangePrivacy()}
               role="button"
               tabIndex={0}
+              style={{ cursor: "pointer", userSelect: "none" }}
             >
               {replyPrivacy === "everyone" ? "Todos" : "Seguindo"}
             </span>
