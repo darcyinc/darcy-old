@@ -24,7 +24,8 @@
     "project": "./tsconfig.json"
   },
   "ignorePatterns": [
-    "**/dist/*"
+    ".next",
+    "*.js"
   ],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
