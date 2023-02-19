@@ -1,6 +1,6 @@
 import "@/styles/reset.css";
-import { Inter } from "@next/font/google";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
