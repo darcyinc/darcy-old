@@ -64,7 +64,7 @@ export default function Home() {
       if (passwordError || emailError) return;
 
       try {
-        const doUserLogin = (await import("@/api/doUserLogin")).default;
+        const doUserLogin = (await import("@/api/doUserRegister")).default;
         const res = await doUserLogin({ email, password });
 
         if (res.errors?.[0]) {
@@ -77,8 +77,8 @@ export default function Home() {
         window.dispatchEvent(new Event("storage"));
         router.push("/");
       } catch {
-        setEmailError("Ocorreu um erro ao tentar se autenticar.");
-        setPasswordError("Ocorreu um erro ao tentar se autenticar.");
+        setEmailError("Ocorreu um erro ao tentar se registrar.");
+        setPasswordError("Ocorreu um erro ao tentar se registrar.");
       }
     },
     [passwordError, emailError, email, password, router]
@@ -89,7 +89,7 @@ export default function Home() {
       <ValidUserCheck redirectToIfLogged="/" />
 
       <div className={styles.card}>
-        <h1>Login</h1>
+        <h1>Inscrever-se</h1>
         <p className={styles.authDescription}>
           Por favor, insira suas credenciais.
         </p>
@@ -148,11 +148,11 @@ export default function Home() {
               }
               type="submit"
             >
-              Autenticar-se
+              Criar conta
             </button>
 
             <span>
-              Não tem uma conta? <Link href="/signup">Registre-se</Link>
+              Já tem uma conta? <Link href="/login">Autentique-se</Link>
             </span>
           </div>
         </form>
