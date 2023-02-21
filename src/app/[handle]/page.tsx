@@ -1,31 +1,52 @@
 import ProfileImages from "@/components/Profile/ProfileImages";
 import styles from "./page.module.scss";
 
+interface UserResponse {
+  errors?: [
+    {
+      message: string;
+    }
+  ];
+  user: {
+    avatar: string;
+    bio: string;
+    handle: string;
+    name: string;
+  };
+}
+
 export default async function Profile({
   params,
 }: {
   params: { handle: string };
 }) {
-  let username = "";
+  // todo: better way to fetch?
+  const req = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.handle}`
+  );
+  const data = (await req.json()) as UserResponse;
+  console.log(">>>>", data);
 
-  username = "Darcy";
+  if (data.errors) {
+    throw new Error(data.errors[0].message);
+  }
+
+  console.log(data);
 
   return (
     <div className={styles.container}>
       <section className={styles.profileImages}>
-        <ProfileImages avatar="https://via.placeholder.com/150/FFFFFF/FFFFFF" banner="https://via.placeholder.com/600/0000FF/FFFFFF" />
+        <ProfileImages
+          avatar={data.user.avatar}
+          banner="https://via.placeholder.com/600x175/0000FF/FFFFFF"
+        />
       </section>
 
       <section className={styles.profileInfo}>
         <div className={styles.main}>
-          <h1 className={styles.username}>{username}</h1>
+          <h1 className={styles.username}>{data.user.name}</h1>
           <span>@{params.handle}</span>
-          <p className={styles.bio}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-            natus quidem libero ut. Incidunt esse cumque deleniti commodi! Hic
-            illum aperiam illo dignissimos ipsam, voluptate iusto beatae dicta
-            corrupti veritatis!
-          </p>
+          {data.user.bio && <p className={styles.bio}>{data.user.bio}</p>}
         </div>
 
         {/* TODO USER EDIT/BLOCK */}
