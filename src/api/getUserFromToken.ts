@@ -11,7 +11,7 @@ export default async function getUserFromToken(
   }
 
   return {
-    user: req.data,
+    ...req.data,
     token,
   };
 }
