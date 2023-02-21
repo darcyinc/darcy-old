@@ -1,0 +1,32 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+  height: 100%;
+
+  .header {
+    section.profileImages {
+      display: flex;
+      width: 500px;
+      height: 200px;
+
+      img.banner {
+        border: 5px solid #ff5e00;
+      }
+
+      // show avatar over banner
+      img.avatar {
+        border: 5px solid #ff0000;
+
+        position: relative;
+        top: 150px;
+        right: 400px;
+        border-radius: 50%;
+
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+}
