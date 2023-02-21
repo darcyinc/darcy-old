@@ -13,6 +13,8 @@ These instructions will help you get a copy of the project up and running on you
 
 ### Installing 💾
 
+> See also: [preparing the back-end](https://github.com/darcyinc/darcy-backend#installing-)
+
 1. Clone the repository:
 
 ```
@@ -38,7 +40,6 @@ Use the following command to start the project in development mode:
 ```
 pnpm dev
 ```
-
 
 ### Building the Project 🏗️
 
