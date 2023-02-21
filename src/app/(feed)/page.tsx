@@ -15,7 +15,7 @@ const ValidUserCheck = dynamic(
 export default function Home() {
   return (
     <>
-      <ValidUserCheck redirectToIfNotLogged="/login" />
+      <ValidUserCheck redirectToIfNotLogged="/auth/login" />
       <Navbar active="feed" />
       <Feed />
     </>
