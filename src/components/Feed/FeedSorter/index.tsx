@@ -1,20 +1,22 @@
 "use client";
 
-import { useCallback, useContext } from "react";
-import { FeedSorterContext } from "@/context/FeedSorterProvider";
+import { useCallback } from "react";
+import {
+  useFeedSorterStore
+} from "@/context/feedSortStore";
 import type { ClickOrKeyboardEvent } from "@/utils/isSpaceOrEnter";
 import isSpaceOrEnter from "@/utils/isSpaceOrEnter";
 import styles from "./index.module.scss";
 
 export default function FeedSorter() {
-  const sortContext = useContext(FeedSorterContext);
+  const sortContext = useFeedSorterStore();
   let friendlyName = "";
 
-  switch (sortContext.data) {
+  switch (sortContext.sort) {
     case "popular":
       friendlyName = "Populares";
       break;
-    case "new":
+    case "newest":
       friendlyName = "Novos";
       break;
   }
@@ -23,7 +25,7 @@ export default function FeedSorter() {
   const handleSortChange = useCallback(
     (e: ClickOrKeyboardEvent) => {
       if (!isSpaceOrEnter(e)) return;
-      sortContext.setData(friendlyName === "Populares" ? "new" : "popular");
+      sortContext.setSort(friendlyName === "Populares" ? "newest" : "popular");
     },
     [friendlyName, sortContext]
   );

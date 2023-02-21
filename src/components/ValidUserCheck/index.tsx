@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import getUserFromToken from "@/api/getUserFromToken";
-import { AccountContext } from "@/context/AccountProvider";
+import { useAccountStore } from "@/context/accountStore";
 
 export interface ValidUserCheckProps {
   redirectToIfLogged?: string;
@@ -14,7 +14,7 @@ export default function ValidUserCheck({
   redirectToIfLogged,
   redirectToIfNotLogged,
 }: ValidUserCheckProps) {
-  const account = useContext(AccountContext);
+  const account = useAccountStore();
   const router = useRouter();
 
   let currentToken = "";

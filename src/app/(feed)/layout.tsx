@@ -1,7 +1,6 @@
 import "@/styles/reset.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "Darcy - Your feed",
@@ -22,9 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ fontFamily: inter.style.fontFamily }}>
-        <Providers>{children}</Providers>
-      </body>
+      <body style={{ fontFamily: inter.style.fontFamily }}>{children}</body>
     </html>
   );
 }
