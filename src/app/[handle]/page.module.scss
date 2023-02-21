@@ -10,43 +10,51 @@
     width: 97%;
   }
 
-  .header {
-    height: fit-content;
-    margin-bottom: 70px;
-    section.profileImages {
-      position: relative;
-      height: 175px;
-      width: 100%;
+  section.profileImages {
+    position: relative;
 
-      img.banner {
-        border: 5px solid #ff5e00;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+    margin-bottom: 70px;
+
+    height: 175px;
+    width: 100%;
+  }
+
+  section.profileInfo {
+    display: flex;
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      span {
+        color: #888888;
       }
 
-      // show avatar over banner
-      img.avatar {
-        border: 5px solid #ff0000;
+      p.bio {
+        max-width: fit-content;
+      }
+    }
+  }
 
-        position: absolute;
+  section.profileStats {
+    display: flex;
+    gap: 20px;
 
-        // move avatar to the left of the banner
-        top: 100%;
-        left: 20%;
-        transform: translate(-50%, -50%);
+    margin-top: 20px;
 
-        border-radius: 50%;
-        object-fit: cover;
+    div {
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
 
-        height: 120px;
-        width: 120px;
-
-        // center avatar on small screens
-        @media (max-width: 600px) {
-          top: 90%;
-          left: 50%;
-        }
+      span:first-child {
+        color: #fff;
+      }
+      span:last-child {
+        color: #888888;
+        margin-left: 3px;
       }
     }
   }

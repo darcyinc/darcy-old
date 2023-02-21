@@ -1,45 +1,46 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import ProfileImages from "@/components/Profile/ProfileImages";
 import styles from "./page.module.scss";
 
-export default function Profile({ params }: { params: { handle: string } }) {
-  const [username, setUsername] = useState<string | null>(null);
-  const [biography, setBiography] = useState<string | null>(null);
+export default async function Profile({
+  params,
+}: {
+  params: { handle: string };
+}) {
+  let username = "";
 
-  useEffect(() => {
-    setUsername("Darcy");
-    setBiography("A social media platform for everyone.");
-  }, []);
+  username = "Darcy";
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <section className={styles.profileImages}>
-          <img
-            src="https://via.placeholder.com/500x220"
-            alt="Profile banner"
-            className={styles.banner}
-            draggable={false}
-            loading="lazy"
-            decoding="async"
-          />
+      <section className={styles.profileImages}>
+        <ProfileImages avatar="https://via.placeholder.com/150/FFFFFF/FFFFFF" banner="https://via.placeholder.com/600/0000FF/FFFFFF" />
+      </section>
 
-          <img
-            src="https://via.placeholder.com/120"
-            alt="Profile avatar"
-            className={styles.avatar}
-            draggable={false}
-            loading="lazy"
-            decoding="async"
-          />
-        </section>
-      </header>
+      <section className={styles.profileInfo}>
+        <div className={styles.main}>
+          <h1 className={styles.username}>{username}</h1>
+          <span>@{params.handle}</span>
+          <p className={styles.bio}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            natus quidem libero ut. Incidunt esse cumque deleniti commodi! Hic
+            illum aperiam illo dignissimos ipsam, voluptate iusto beatae dicta
+            corrupti veritatis!
+          </p>
+        </div>
 
-      <section className={styles.content}>
-        <h1 className={styles.username}>{username}</h1>
-        <span>@{params.handle}</span>
-        <p className={styles.bio}>{biography}</p>
+        {/* TODO USER EDIT/BLOCK */}
+      </section>
+
+      <section className={styles.profileStats}>
+        <div>
+          <span>0</span>
+          <span>Seguidores</span>
+        </div>
+
+        <div>
+          <span>0</span>
+          <span>Seguindo</span>
+        </div>
       </section>
     </div>
   );
