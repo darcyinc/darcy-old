@@ -49,10 +49,7 @@ export default function Navbar({ active }: NavbarProps) {
             decoding="async"
             height="100"
             loading="lazy"
-            src={
-              account.data.user?.avatar ??
-              process.env.NEXT_PUBLIC_DEFAULT_AVATAR_URL
-            }
+            src={account.data.user?.avatar}
             width="100"
           />
         </div>

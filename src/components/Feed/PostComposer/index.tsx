@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
+import { AccountContext } from "@/context/AccountProvider";
 import isSpaceOrEnter from "@/utils/isSpaceOrEnter";
 import styles from "./index.module.scss";
 
@@ -18,6 +19,7 @@ export default function PostComposer() {
   const [postContent, setPostContent] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
+  const account = useContext(AccountContext);
 
   const autoResize = useCallback(() => {
     if (!textareaRef.current) return;
@@ -92,7 +94,7 @@ export default function PostComposer() {
           <img
             alt="User avatar"
             height="60"
-            src="https://via.placeholder.com/150"
+            src={account.data.user?.avatar}
             width="60"
           />
           <textarea

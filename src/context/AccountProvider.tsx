@@ -3,7 +3,7 @@ import { createContext, useMemo, useState } from "react";
 export interface AccountData {
   token?: string;
   user?: {
-    avatar?: string;
+    avatar: string;
     handle: string;
     name: string;
   };
