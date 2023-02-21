@@ -1,6 +1,6 @@
 import styles from "./page.module.scss";
 
-export default function Profile({ params }: { params: { username: string } }) {
+export default function Profile({ params }: { params: { handle: string } }) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -26,8 +26,8 @@ export default function Profile({ params }: { params: { username: string } }) {
       </header>
 
       <section className={styles.content}>
-        <h1 className={styles.username}>{params.username}</h1>
-        <span>@{params.username}</span>
+        <h1 className={styles.username}>Davi Patricio</h1>
+        <span>@{params.handle}</span>
         <p className={styles.bio}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
         </p>

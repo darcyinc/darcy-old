@@ -5,12 +5,12 @@ import "./globals.css";
 export async function generateMetadata({
   params,
 }: {
-  params: { username: string };
+  params: { handle: string };
 }) {
   return {
-    title: `Darcy - @${params.username}`,
-    description: `@${params.username} is a user on Darcy.`,
-    keywords: [`${params.username}`, "user", "darcy", "darcy social media"],
+    title: `Darcy - @${params.handle}`,
+    description: `@${params.handle} is a user on Darcy.`,
+    keywords: [`${params.handle}`, "user", "darcy", "darcy social media"],
     colorScheme: "dark",
     icons: {
       shortcut: [{ url: "/favicon.png" }],
