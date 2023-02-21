@@ -7,6 +7,8 @@ export const axios = Axios.create({
   headers: {
     Authorization: token ? `Bearer ${token}` : undefined,
   },
+  // disable throw error on 4xx and 5xx
+  validateStatus: () => true,
 });
 
 window.addEventListener("storage", () => {
