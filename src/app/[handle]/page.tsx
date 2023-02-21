@@ -1,6 +1,17 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import styles from "./page.module.scss";
 
 export default function Profile({ params }: { params: { handle: string } }) {
+  const [username, setUsername] = useState<string | null>(null);
+  const [biography, setBiography] = useState<string | null>(null);
+
+  useEffect(() => {
+    setUsername("Darcy");
+    setBiography("A social media platform for everyone.");
+  }, []);
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -26,11 +37,9 @@ export default function Profile({ params }: { params: { handle: string } }) {
       </header>
 
       <section className={styles.content}>
-        <h1 className={styles.username}>Davi Patricio</h1>
+        <h1 className={styles.username}>{username}</h1>
         <span>@{params.handle}</span>
-        <p className={styles.bio}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-        </p>
+        <p className={styles.bio}>{biography}</p>
       </section>
     </div>
   );
