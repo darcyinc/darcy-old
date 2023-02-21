@@ -1,4 +1,4 @@
-import type { AccountData } from "@/context/AccountProvider";
+import type { AccountData } from "@/context/accountStore";
 import { axios } from "./axios";
 
 export default async function getUserFromToken(
