@@ -5,7 +5,7 @@ import "./globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "Darcy - Sign up",
+  title: "Darcy",
   description: "Darcy is a social media where you can share your thoughts.",
   keywords: ["social media", "social", "media", "darcy", "darcy social media"],
   colorScheme: "dark",

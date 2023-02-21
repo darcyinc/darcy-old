@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ChangeEvent } from "react";
 import { useCallback, useState } from "react";
-import styles from "./page.module.scss";
+import emailRegex from "@/utils/emailRegex";
+import styles from "../page.module.scss";
 
 const ValidUserCheck = dynamic(
   async () => import("@/components/ValidUserCheck"),
@@ -14,8 +15,11 @@ const ValidUserCheck = dynamic(
   }
 );
 
-const EMAIL_REGEX =
-  /^(([^\s"(),.:;<>@[\\\]]+(\.[^\s"(),.:;<>@[\\\]]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([\dA-Za-z-]+\.)+[A-Za-z]{2,}))$/;
+export const metadata = {
+  title: "Darcy - Sign in",
+};
+
+const EMAIL_REGEX = emailRegex()
 
 export default function Home() {
   const router = useRouter();
@@ -64,7 +68,7 @@ export default function Home() {
       if (passwordError || emailError) return;
 
       try {
-        const doUserLogin = (await import("@/api/doUserRegister")).default;
+        const doUserLogin = (await import("@/api/doUserLogin")).default;
         const res = await doUserLogin({ email, password });
 
         if (res.errors?.[0]) {
@@ -77,8 +81,8 @@ export default function Home() {
         window.dispatchEvent(new Event("storage"));
         router.push("/");
       } catch {
-        setEmailError("Ocorreu um erro ao tentar se registrar.");
-        setPasswordError("Ocorreu um erro ao tentar se registrar.");
+        setEmailError("Ocorreu um erro ao tentar se autenticar.");
+        setPasswordError("Ocorreu um erro ao tentar se autenticar.");
       }
     },
     [passwordError, emailError, email, password, router]
@@ -89,7 +93,7 @@ export default function Home() {
       <ValidUserCheck redirectToIfLogged="/" />
 
       <div className={styles.card}>
-        <h1>Inscrever-se</h1>
+        <h1>Login</h1>
         <p className={styles.authDescription}>
           Por favor, insira suas credenciais.
         </p>
@@ -148,11 +152,11 @@ export default function Home() {
               }
               type="submit"
             >
-              Criar conta
+              Autenticar-se
             </button>
 
             <span>
-              Já tem uma conta? <Link href="/login">Autentique-se</Link>
+              Não tem uma conta? <Link href="/auth/signup">Registre-se</Link>
             </span>
           </div>
         </form>
