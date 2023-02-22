@@ -113,8 +113,8 @@ export default function PostComposer() {
             onClick={handlePrivacyChange}
             onKeyDown={handlePrivacyChange}
             role="button"
-            tabIndex={0}
             style={{ cursor: "pointer", userSelect: "none" }}
+            tabIndex={0}
           >
             <TbWorld />
             <span>{replyPrivacy === "everyone" ? "Todos" : "Seguindo"}</span>
@@ -125,10 +125,10 @@ export default function PostComposer() {
             id="fileInput"
             multiple
             onChange={(e) => handleFileInputChange(e.target.files)}
-            style={{ display: "none", visibility: "hidden" }}
-            type="file"
             // Clear input value so the same file can be uploaded again
             onClick={(e) => (e.currentTarget.value = "")}
+            style={{ display: "none", visibility: "hidden" }}
+            type="file"
           />
           <label htmlFor="fileInput">
             <MdAddPhotoAlternate data-disabled={files.length >= 4} />
@@ -137,8 +137,8 @@ export default function PostComposer() {
         <button
           className={styles.send}
           disabled={shouldDisableButton}
-          type="submit"
           onClick={handleSend}
+          type="submit"
         >
           <AiOutlineSend />
         </button>
