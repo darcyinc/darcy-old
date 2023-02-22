@@ -26,7 +26,9 @@ async function fetchUser(handle: string) {
     if (data.errors) return;
 
     return data;
-  } catch {}
+  } catch {
+    return undefined;
+  }
 }
 
 export default async function Profile({
