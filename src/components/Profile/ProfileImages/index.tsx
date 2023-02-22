@@ -37,16 +37,21 @@ export default function ProfileImages({ avatar, banner }: ProfileImagesProps) {
         )}
       </div>
 
-      <div className={styles.avatarContainer}>
+      <div
+        className={styles.avatarContainer}
+        style={{ width: "120px", height: "120px" }}
+      >
         {avatar && (
           <img
             alt="Profile avatar"
             className={styles.avatar}
             decoding="async"
             draggable={false}
+            height="120"
             loading="lazy"
             onError={handleImageError}
             src={avatar}
+            width="120"
           />
         )}
       </div>
