@@ -29,15 +29,15 @@
   ],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/require-await": "error",
     "@next/next/no-img-element": "off",
-    "@next/next/no-page-custom-font": "off",
     "promise/prefer-await-to-then": "off",
-    "react/jsx-sort-props": "off",
     "no-warning-comments": "off",
     "unicorn/no-unsafe-regex": "off",
     "prefer-named-capture-group": "off",
     "id-length": "off",
     "validate-jsx-nesting/no-invalid-jsx-nesting": "error",
+    "require-await": "off",
     "no-unused-vars": [
       "error",
       {
