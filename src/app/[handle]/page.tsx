@@ -23,9 +23,7 @@ async function fetchUser(handle: string) {
     );
     const data = (await req.json()) as UserResponse;
 
-    if (data.errors) {
-      return;
-    }
+    if (data.errors) return;
 
     return data;
   } catch {}
