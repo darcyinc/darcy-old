@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import ProfileImages from "@/components/Profile/ProfileImages";
 import styles from "./page.module.scss";
 
@@ -15,23 +16,32 @@ interface UserResponse {
   };
 }
 
+async function fetchUser(handle: string) {
+  try {
+    const req = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/users/${handle}`
+    );
+    const data = (await req.json()) as UserResponse;
+
+    if (data.errors) {
+      return;
+    }
+
+    return data;
+  } catch {}
+}
+
 export default async function Profile({
   params,
 }: {
   params: { handle: string };
 }) {
-  // todo: better way to fetch?
-  const req = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.handle}`
-  );
-  const data = (await req.json()) as UserResponse;
-  console.log(">>>>", data);
+  const { handle } = params;
 
-  if (data.errors) {
-    throw new Error(data.errors[0].message);
+  const data = await fetchUser(handle);
+  if (!data) {
+    return notFound();
   }
-
-  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -45,7 +55,7 @@ export default async function Profile({
       <section className={styles.profileInfo}>
         <div className={styles.main}>
           <h1 className={styles.username}>{data.user.name}</h1>
-          <span>@{params.handle}</span>
+          <span>@{handle}</span>
           {data.user.bio && <p className={styles.bio}>{data.user.bio}</p>}
         </div>
 
