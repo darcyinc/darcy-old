@@ -15,10 +15,6 @@ const ValidUserCheck = dynamic(
   }
 );
 
-export const metadata = {
-  title: "Darcy - Sign up",
-}
-
 const EMAIL_REGEX = emailRegex()
 
 export default function Home() {
