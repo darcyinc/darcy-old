@@ -2,11 +2,7 @@ import "@/styles/reset.css";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { handle: string };
-}) {
+export function generateMetadata({ params }: { params: { handle: string } }) {
   return {
     title: `Darcy - @${params.handle}`,
     description: `@${params.handle} is a user on Darcy.`,

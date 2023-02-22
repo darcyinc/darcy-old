@@ -24,15 +24,15 @@ export default function ProfileImages({ avatar, banner }: ProfileImagesProps) {
       >
         {banner && (
           <img
-            src={banner}
             alt="Profile banner"
             className={styles.banner}
-            draggable={false}
-            loading="lazy"
             decoding="async"
-            width="600"
+            draggable={false}
             height="175"
+            loading="lazy"
             onError={handleImageError}
+            src={banner}
+            width="600"
           />
         )}
       </div>
@@ -40,13 +40,13 @@ export default function ProfileImages({ avatar, banner }: ProfileImagesProps) {
       <div className={styles.avatarContainer}>
         {avatar && (
           <img
-            src={avatar}
             alt="Profile avatar"
             className={styles.avatar}
+            decoding="async"
             draggable={false}
             loading="lazy"
-            decoding="async"
             onError={handleImageError}
+            src={avatar}
           />
         )}
       </div>
