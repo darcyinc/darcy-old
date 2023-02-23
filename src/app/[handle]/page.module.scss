@@ -8,12 +8,12 @@
     // Small screens have a bottom navbar, so we need to add some padding
     padding-bottom: 90px;
     width: 100vw;
-  }
 
-  // add padding on all children but not the first one
-  > *:not(:first-child) {
-    padding-left: 15px;
-    padding-right: 15px;
+    // add padding on all children but not the first one
+    > *:not(:first-child) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 
   section.profileImages {
