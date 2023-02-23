@@ -3,7 +3,21 @@
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
 
+  height: 100%;
+  width: 600px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
   img.banner {
+    width: 100%;
+    height: 100%;
+
+    @media (max-width: 600px) {
+      height: 105%;
+    }
+
     object-fit: cover;
     object-position: center;
   }
@@ -17,8 +31,8 @@
 
   position: absolute;
 
-  bottom: -50px;
-  left: 40px;
+  bottom: -63px;
+  left: 20px;
 
   img.avatar {
     border-radius: 50%;

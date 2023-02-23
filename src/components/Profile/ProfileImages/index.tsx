@@ -20,7 +20,6 @@ export default function ProfileImages({ avatar, banner }: ProfileImagesProps) {
     <>
       <div
         className={styles.bannerContainer}
-        style={{ width: "600px", height: "175px" }}
       >
         {banner && (
           <img

@@ -51,7 +51,7 @@ export default async function Profile({
           banner="https://via.placeholder.com/600x175/0000FF/FFFFFF"
         />
       </section>
-
+ 
       <section className={styles.profileInfo}>
         <div className={styles.main}>
           <h1 className={styles.username}>{data.user.name}</h1>

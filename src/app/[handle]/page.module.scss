@@ -7,7 +7,13 @@
   @media (max-width: 600px) {
     // Small screens have a bottom navbar, so we need to add some padding
     padding-bottom: 90px;
-    width: 97%;
+    width: 100vw;
+  }
+
+  // add padding on all children but not the first one
+  > *:not(:first-child) {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   section.profileImages {
@@ -27,12 +33,18 @@
       flex-direction: column;
       gap: 3px;
 
-      span {
-        color: #888888;
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
       }
 
-      p.bio {
-        max-width: fit-content;
+      span {
+        color: #888888;
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
       }
     }
   }
