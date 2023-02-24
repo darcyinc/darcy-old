@@ -6,10 +6,8 @@ interface CreatePostData {
   replyPrivacy: "everyone" | "following";
 }
 
-export interface PostData {
-  content: string;
+interface PostData extends Omit<CreatePostData, "files"> {
   files: File[];
-  replyPrivacy: "everyone" | "following";
 }
 
 const doRequest = (finalData: CreatePostData) => {

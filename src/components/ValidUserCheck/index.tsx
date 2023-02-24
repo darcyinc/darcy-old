@@ -22,7 +22,7 @@ export default function ValidUserCheck({
   useEffect(() => {
     if (!currentToken) return;
 
-    getUserFromToken(currentToken)
+    getUserFromToken()
       .then((d) => {
         account.setData(d);
         if (redirectToIfLogged) router.replace(redirectToIfLogged);
