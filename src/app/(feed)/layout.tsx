@@ -1,4 +1,4 @@
-import "@/styles/reset.css";
+import "@/styles/reset.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 

@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import "./globals.css";
+import "./globals.scss";
 
 const Feed = dynamic(async () => import("@/components/Feed"), { ssr: false });
 const Navbar = dynamic(async () => import("@/components/Navbar"), {
