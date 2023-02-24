@@ -15,7 +15,7 @@ const ValidUserCheck = dynamic(
   }
 );
 
-const EMAIL_REGEX = emailRegex()
+const EMAIL_REGEX = emailRegex();
 
 export default function Home() {
   const router = useRouter();
