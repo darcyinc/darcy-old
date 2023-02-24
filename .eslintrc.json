@@ -38,6 +38,7 @@
     "id-length": "off",
     "validate-jsx-nesting/no-invalid-jsx-nesting": "error",
     "require-await": "off",
+    "semi": "error",
     "no-unused-vars": [
       "error",
       {
