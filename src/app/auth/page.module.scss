@@ -1,12 +1,3 @@
-.body {
-  background: url(../../assets/auth-bg.svg) no-repeat center center fixed;
-  background-size: cover;
-
-  @media (max-width: 768px) {
-    background: url(../../assets/auth-bg.svg) no-repeat center center fixed;
-  }
-}
-
 .container {
   display: flex;
   justify-content: center;
