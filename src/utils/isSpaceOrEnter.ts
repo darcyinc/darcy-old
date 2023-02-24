@@ -1,5 +1,6 @@
 export type ClickOrKeyboardEvent =
-  React.KeyboardEvent<HTMLElement | SVGElement> | React.MouseEvent<HTMLElement | SVGElement>;
+  | React.KeyboardEvent<HTMLElement>
+  | React.MouseEvent<HTMLElement>;
 
 export default function isSpaceOrEnter(e: ClickOrKeyboardEvent) {
   if (e.type === "click") return true;
