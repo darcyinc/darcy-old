@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ChangeEvent } from "react";
-import { useCallback, useState } from "react";
+import { useMemo, useCallback, useState } from "react";
 import Logo from "@/assets/logo-cropped.png";
 import emailRegex from "@/utils/emailRegex";
 import styles from "../page.module.scss";
@@ -27,42 +27,53 @@ export default function Home() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const cleanupErrors = useCallback(() => {
+  const hasValidationErrors = useMemo(
+    () =>
+      emailError !== "" || passwordError !== "" || [emailError, passwordError],
+    [emailError, passwordError]
+  );
+
+  const handleValidations = useCallback(() => {
+    // Cleanup errors
     setEmailError("");
     setPasswordError("");
-  }, []);
+
+    // Length validation
+    if (email.length === 0) setEmailError("O campo email é obrigatório.");
+    if (password.length === 0) setPasswordError("O campo senha é obrigatório.");
+
+    // Email validation
+    if (!email.includes("@") || !EMAIL_REGEX.test(email))
+      setEmailError("O campo email deve ser um email válido.");
+
+    // Password validation
+    if (password.length < 8)
+      setPasswordError("A senha deve ter no mínimo 8 caracteres.");
+  }, [email, password]);
 
   const handleEmail = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setEmail(value);
-      cleanupErrors();
-
-      if (!value.includes("@") || !EMAIL_REGEX.test(value))
-        setEmailError("O campo email deve ser um email válido.");
-      if (value.length === 0) setEmailError("O campo email é obrigatório.");
+      handleValidations();
     },
-    [cleanupErrors]
+    [handleValidations]
   );
 
   const handlePassword = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setPassword(value);
-      cleanupErrors();
-
-      if (value.length < 8)
-        setPasswordError("A senha deve ter no mínimo 8 caracteres.");
-      if (value.length === 0) setPasswordError("O campo senha é obrigatório.");
+      handleValidations();
     },
-    [cleanupErrors]
+    [handleValidations]
   );
 
   const handleSubmit = useCallback(
     async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (passwordError || emailError) return;
+      if (hasValidationErrors) return;
 
       try {
         const doUserLogin = (await import("@/api/doUserLogin")).default;
@@ -82,7 +93,7 @@ export default function Home() {
         setPasswordError("Ocorreu um erro ao tentar se autenticar.");
       }
     },
-    [passwordError, emailError, email, password, router]
+    [hasValidationErrors, email, password, router]
   );
 
   return (
@@ -161,7 +172,7 @@ export default function Home() {
 
             <span>
               <Link href="/auth/sign_up">Criar conta</Link>
-              {' - '}
+              {" - "}
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a href="#">Esqueceu sua senha?</a>
             </span>

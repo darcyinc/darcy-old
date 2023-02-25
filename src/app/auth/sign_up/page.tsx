@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ChangeEvent } from "react";
-import { useCallback, useState } from "react";
+import { useMemo, useCallback, useState } from "react";
 import Logo from "@/assets/logo-cropped.png";
 import emailRegex from "@/utils/emailRegex";
 import styles from "../page.module.scss";
@@ -29,64 +29,71 @@ export default function Home() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmedPasswordError, setConfirmedPasswordError] = useState("");
 
-  const cleanupErrors = useCallback(() => {
+  const hasValidationErrors = useMemo(
+    () =>
+      emailError !== "" ||
+      passwordError !== "" ||
+      confirmedPasswordError !== "",
+    [confirmedPasswordError, emailError, passwordError]
+  );
+
+  const handleValidations = useCallback(() => {
+    // Cleanup errors
     setEmailError("");
     setPasswordError("");
     setConfirmedPasswordError("");
-  }, []);
+
+    // Length validation
+    if (email.length === 0) setEmailError("O campo email é obrigatório.");
+    if (password.length === 0) setPasswordError("O campo senha é obrigatório.");
+    if (confirmedPassword.length === 0)
+      setConfirmedPasswordError("O campo confirmação de senha é obrigatório.");
+
+    // Email validation
+    if (!email.includes("@") || !EMAIL_REGEX.test(email))
+      setEmailError("O campo email deve ser um email válido.");
+
+    // Password validation
+    if (password.length < 8)
+      setPasswordError("A senha deve ter no mínimo 8 caracteres.");
+
+    // Confirmed password validation
+    if (confirmedPassword !== password)
+      setConfirmedPasswordError("As senhas não são iguais.");
+  }, [confirmedPassword, email, password]);
 
   const handleEmail = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setEmail(value);
-      cleanupErrors();
-
-      if (!value.includes("@") || !EMAIL_REGEX.test(value))
-        setEmailError("O campo email deve ser um email válido.");
-      if (value.length === 0) setEmailError("O campo email é obrigatório.");
+      handleValidations();
     },
-    [cleanupErrors]
+    [handleValidations]
   );
 
   const handlePassword = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setPassword(value);
-      cleanupErrors();
-
-      if (value.length < 8)
-        setPasswordError("A senha deve ter no mínimo 8 caracteres.");
-      if (value.length === 0) setPasswordError("O campo senha é obrigatório.");
+      handleValidations();
     },
-    [cleanupErrors]
+    [handleValidations]
   );
 
   const handleConfirmedPassword = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
       setConfirmedPassword(value);
-      cleanupErrors();
-
-      if (value !== password)
-        setConfirmedPasswordError("As senhas não são iguais.");
-      if (value.length === 0)
-        setConfirmedPasswordError(
-          "O campo confirmação de senha é obrigatório."
-        );
+      handleValidations();
     },
-    [cleanupErrors, password]
+    [handleValidations]
   );
 
   const handleSubmit = useCallback(
     async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (
-        emailError === "" &&
-        passwordError === "" &&
-        confirmedPasswordError === ""
-      )
-        return;
+      if (hasValidationErrors) return;
 
       try {
         const doUserLogin = (await import("@/api/doUserRegister")).default;
@@ -106,7 +113,7 @@ export default function Home() {
         setPasswordError("Ocorreu um erro ao tentar se registrar.");
       }
     },
-    [email, emailError, password, passwordError, confirmedPasswordError, router]
+    [email, password, hasValidationErrors, router]
   );
 
   return (
