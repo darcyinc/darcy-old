@@ -23,13 +23,16 @@ export default function Home() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmedPassword, setConfirmedPassword] = useState("");
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [confirmedPasswordError, setConfirmedPasswordError] = useState("");
 
   const cleanupErrors = useCallback(() => {
     setEmailError("");
     setPasswordError("");
+    setConfirmedPasswordError("");
   }, []);
 
   const handleEmail = useCallback(
@@ -58,11 +61,32 @@ export default function Home() {
     [cleanupErrors]
   );
 
+  const handleConfirmedPassword = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setConfirmedPassword(value);
+      cleanupErrors();
+
+      if (value !== password)
+        setConfirmedPasswordError("As senhas não são iguais.");
+      if (value.length === 0)
+        setConfirmedPasswordError(
+          "O campo confirmação de senha é obrigatório."
+        );
+    },
+    [cleanupErrors, password]
+  );
+
   const handleSubmit = useCallback(
     async (e: ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (passwordError || emailError) return;
+      if (
+        emailError === "" &&
+        passwordError === "" &&
+        confirmedPasswordError === ""
+      )
+        return;
 
       try {
         const doUserLogin = (await import("@/api/doUserRegister")).default;
@@ -82,7 +106,7 @@ export default function Home() {
         setPasswordError("Ocorreu um erro ao tentar se registrar.");
       }
     },
-    [passwordError, emailError, email, password, router]
+    [email, emailError, password, passwordError, confirmedPasswordError, router]
   );
 
   return (
@@ -103,9 +127,9 @@ export default function Home() {
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.email}>
+          <div>
             <div className={styles.label}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">E-mail</label>
               {emailError && (
                 <label className={styles.error} htmlFor="email">
                   {emailError}
@@ -123,7 +147,7 @@ export default function Home() {
             />
           </div>
 
-          <div className={styles.password}>
+          <div>
             <div className={styles.label}>
               <label htmlFor="password">Senha</label>
               {passwordError && (
@@ -143,6 +167,26 @@ export default function Home() {
             />
           </div>
 
+          <div>
+            <div className={styles.label}>
+              <label htmlFor="confirm-password">Confirmar senha</label>
+              {confirmedPasswordError && (
+                <label className={styles.error} htmlFor="confirm-password">
+                  {confirmedPasswordError}
+                </label>
+              )}
+            </div>
+
+            <input
+              id="confirm-password"
+              name="confirm-password"
+              onChange={handleConfirmedPassword}
+              placeholder="********"
+              type="password"
+              value={confirmedPassword}
+            />
+          </div>
+
           <div className={styles.actions}>
             <button
               className={styles.login}
@@ -152,6 +196,8 @@ export default function Home() {
                 email.length === 0 ||
                 password.length === 0 ||
                 password.length < 8 ||
+                confirmedPassword.length === 0 ||
+                confirmedPassword !== password ||
                 !email.includes("@")
               }
               type="submit"
