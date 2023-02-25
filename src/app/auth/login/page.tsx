@@ -160,7 +160,7 @@ export default function Home() {
             </button>
 
             <span>
-              <Link href="/auth/login">Criar conta</Link>
+              <Link href="/auth/sign_up">Criar conta</Link>
               {' - '}
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a href="#">Esqueceu sua senha?</a>
