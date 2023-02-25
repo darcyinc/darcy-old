@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ChangeEvent } from "react";
 import { useCallback, useState } from "react";
+import Logo from "@/assets/logo-cropped.png";
 import emailRegex from "@/utils/emailRegex";
 import styles from "../page.module.scss";
 
@@ -89,10 +90,17 @@ export default function Home() {
       <ValidUserCheck redirectToIfLogged="/" />
 
       <div className={styles.card}>
-        <h1>Inscrever-se</h1>
-        <p className={styles.authDescription}>
-          Por favor, insira suas credenciais.
-        </p>
+        <div className={styles.logoContainer}>
+          <img
+            alt="Logo"
+            className={styles.logo}
+            draggable={false}
+            height={72}
+            src={Logo.src}
+            width={80}
+          />
+          <span>Darcy</span>
+        </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.email}>
@@ -152,7 +160,7 @@ export default function Home() {
             </button>
 
             <span>
-              Já tem uma conta? <Link href="/auth/login">Autentique-se</Link>
+              <Link href="/auth/sign_in">Já tenho uma conta</Link>
             </span>
           </div>
         </form>

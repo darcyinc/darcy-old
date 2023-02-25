@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ChangeEvent } from "react";
 import { useCallback, useState } from "react";
+import Logo from "@/assets/logo-cropped.png";
 import emailRegex from "@/utils/emailRegex";
 import styles from "../page.module.scss";
 
@@ -89,15 +90,22 @@ export default function Home() {
       <ValidUserCheck redirectToIfLogged="/" />
 
       <div className={styles.card}>
-        <h1>Login</h1>
-        <p className={styles.authDescription}>
-          Por favor, insira suas credenciais.
-        </p>
+        <div className={styles.logoContainer}>
+          <img
+            alt="Logo"
+            className={styles.logo}
+            draggable={false}
+            height={72}
+            src={Logo.src}
+            width={80}
+          />
+          <span>Darcy</span>
+        </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.email}>
             <div className={styles.label}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">E-mail</label>
               {emailError && (
                 <label className={styles.error} htmlFor="email">
                   {emailError}
@@ -148,11 +156,14 @@ export default function Home() {
               }
               type="submit"
             >
-              Autenticar-se
+              Entrar
             </button>
 
             <span>
-              Não tem uma conta? <Link href="/auth/signup">Registre-se</Link>
+              <Link href="/auth/login">Criar conta</Link>
+              {' - '}
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a href="#">Esqueceu sua senha?</a>
             </span>
           </div>
         </form>
