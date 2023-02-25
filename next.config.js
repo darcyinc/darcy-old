@@ -21,6 +21,7 @@ const hashOnlyIdent = (context, _, exportName) =>
 const nextConfig = {
   experimental: {
     appDir: true,
+    typedRoutes: true,
   },
 
   webpack(config, { dev }) {
