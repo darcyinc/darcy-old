@@ -5,6 +5,7 @@ import styles from './index.module.scss';
 import loadMoreObserver from './loadMoreObserver';
 
 export default function Feed() {
+  // eslint-disable-next-line solid/reactivity
   const [, setPosts] = createSignal(Array.from({ length: 2 }));
 
   let lastAutoFetch = 0;

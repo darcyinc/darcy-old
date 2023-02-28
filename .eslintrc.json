@@ -45,6 +45,8 @@
         "ignoreRestSiblings": false,
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }

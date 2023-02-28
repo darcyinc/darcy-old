@@ -1,5 +1,3 @@
-'use client';
-
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
 import { A } from 'solid-start';
@@ -105,7 +103,7 @@ export default function Home() {
               <label for="email">E-mail</label>
               {emailError && (
                 <label class={styles.error} for="email">
-                  {emailError}
+                  {emailError()}
                 </label>
               )}
             </div>
@@ -125,7 +123,7 @@ export default function Home() {
               <label for="password">Senha</label>
               {passwordError && (
                 <label class={styles.error} for="password">
-                  {passwordError}
+                  {passwordError()}
                 </label>
               )}
             </div>
@@ -159,7 +157,7 @@ export default function Home() {
             <span>
               <A href="/auth/sign_up">Criar conta</A>
               {' - '}
-              <a href="#">Esqueceu sua senha?</a>
+              <a href="#forgot_password">Esqueceu sua senha?</a>
             </span>
           </div>
         </form>
