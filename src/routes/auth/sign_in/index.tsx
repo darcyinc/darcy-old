@@ -1,6 +1,6 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
-import { A } from 'solid-start';
+import { A, Title } from 'solid-start';
 import Logo from '../../../assets/logo-cropped.png';
 import styles from '../page.module.scss';
 import emailRegex from '~/utils/emailRegex';
@@ -82,6 +82,7 @@ export default function Home() {
 
   return (
     <div class={styles.container}>
+      <Title>Darcy - Log in</Title>
       <ValidUserCheck redirectToIfLogged="/" navigate={navigate} />
 
       <div class={styles.card}>
