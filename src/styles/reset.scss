@@ -13,3 +13,15 @@ textarea,
 button {
   font-family: inherit;
 }
+
+/* Make text white */
+body {
+  color: #fff;
+}
+
+/* Remove default button styles */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
