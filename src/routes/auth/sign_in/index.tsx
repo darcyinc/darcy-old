@@ -5,7 +5,7 @@ import Logo from '../../../assets/logo-cropped.png';
 import styles from '../page.module.scss';
 import emailRegex from '~/utils/emailRegex';
 
-const ValidUserCheck = lazy(async () => import('~/components/ValidUserCheck'));
+const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));
 
 const EMAIL_REGEX = emailRegex();
 

@@ -29,6 +29,12 @@
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/promise-function-async": [
+      "error",
+      {
+        "checkArrowFunctions": false
+      }
+    ],
     "promise/prefer-await-to-then": "off",
     "no-warning-comments": "off",
     "unicorn/no-unsafe-regex": "off",
@@ -46,7 +52,6 @@
         "argsIgnorePattern": "^_"
       }
     ],
-
     "jsx-a11y/label-has-associated-control": "off"
   }
 }
