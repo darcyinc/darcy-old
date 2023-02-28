@@ -15,28 +15,30 @@ on:
 
 jobs:
   build:
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    if: github.event_name != "pull_request" || github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name
+    if: |
+      "!contains(github.event.head_commit.message, '[skip ci]')"" || 
+      (github.event_name != "pull_request" || github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name)
+
     runs-on: ubuntu-22.04
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Use Node.js v18
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-      with:
-        version: 7.27.0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.27.0
 
-    - name: Install Dependencies
-      run: pnpm install
+      - name: Install Dependencies
+        run: pnpm install
 
-    - name: Run Next.js Lint
-      run: pnpm eslint . src
+      - name: Run Next.js Lint
+        run: pnpm eslint . src
 
-    - name: Run Next.js Build
-      run: pnpm build
+      - name: Run Next.js Build
+        run: pnpm build
