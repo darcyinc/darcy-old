@@ -37,8 +37,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Run Next.js Lint
+      - name: Run Lint
         run: pnpm eslint . src
 
-      - name: Run Next.js Build
+      - name: Run Solid Build
         run: pnpm build
