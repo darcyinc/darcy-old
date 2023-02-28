@@ -25,7 +25,7 @@ export default function ValidUserCheck({
     if (!currentToken) return;
 
     getUserFromToken()
-      .then((d: any) => {
+      .then((d) => {
         setAccountData(d);
         if (redirectToIfLogged) {
           navigate(redirectToIfLogged, { replace: true });
