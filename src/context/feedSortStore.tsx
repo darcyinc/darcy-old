@@ -1,11 +1,6 @@
-import { create } from "zustand";
+import { createSignal } from 'solid-js';
 
-interface FeedSorterData {
-  setSort(_sort: FeedSorterData['sort']): void;
-  sort: "newest" | "popular";
-}
+type FeedSorterData = 'newest' | 'popular';
 
-export const useFeedSorterStore = create<FeedSorterData>((set) => ({
-  sort: "popular",
-  setSort: (sort) => set({ sort }),
-}));
+// eslint-disable-next-line solid/reactivity
+export const useFeedSort = () => createSignal<FeedSorterData>('popular');

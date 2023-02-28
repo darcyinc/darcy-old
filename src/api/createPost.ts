@@ -1,19 +1,17 @@
-import { axios } from "./axios";
+import { axios } from './axios';
 
 interface CreatePostData {
   content: string;
   files: string[];
-  replyPrivacy: "everyone" | "following";
+  replyPrivacy: 'everyone' | 'following';
 }
 
-export interface PostData {
-  content: string;
+interface PostData extends Omit<CreatePostData, 'files'> {
   files: File[];
-  replyPrivacy: "everyone" | "following";
 }
 
 const doRequest = (finalData: CreatePostData) => {
-  axios.post("/posts", finalData).then(console.log).catch(console.log);
+  axios.post('/posts', finalData).then(console.log).catch(console.log);
 };
 
 export default function createPost(data: PostData) {
