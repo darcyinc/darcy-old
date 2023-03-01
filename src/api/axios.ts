@@ -1,19 +1,24 @@
-import Axios from "axios";
-
-const token = localStorage.getItem("token");
+import Axios from 'axios';
 
 export const axios = Axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
-    Authorization: token ? `Bearer ${token}` : undefined,
+    Authorization: '',
   },
   // disable throw error on 4xx and 5xx
   validateStatus: () => true,
 });
 
-window.addEventListener("storage", () => {
-  const token = localStorage.getItem("token");
-
+function updateToken() {
+  const token = localStorage.getItem('token');
   if (token) axios.defaults.headers.Authorization = `Bearer ${token}`;
   else delete axios.defaults.headers.Authorization;
-});
+}
+
+if (typeof window !== 'undefined') {
+  updateToken();
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', () => updateToken());
+  }
+}

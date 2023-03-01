@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* These elements don't inherit font-family */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+/* Make text white */
+body {
+  color: #fff;
+}
+
+/* Remove default button styles */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

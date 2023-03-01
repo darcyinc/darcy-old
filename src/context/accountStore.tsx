@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { createSignal } from 'solid-js';
 
 export interface AccountData {
   token?: string;
@@ -9,12 +9,5 @@ export interface AccountData {
   };
 }
 
-interface AccountStore {
-  data: AccountData;
-  setData(_data: AccountData): void;
-}
-
-export const useAccountStore = create<AccountStore>((set) => ({
-  data: {},
-  setData: (data) => set({ data }),
-}));
+// eslint-disable-next-line solid/reactivity
+export const useAccountStore = () => createSignal<AccountData>({});

@@ -60,7 +60,7 @@ pnpm start
 ## Built With 🛠️
 
 - [Node.js](https://github.com/nodejs/node)
-- [Next.js](https://github.com/vercel/next.js)
+- [SolidJS](https://github.com/solidjs/solid)
 - [TypeScript](https://github.com/microsoft/TypeScript)
 
 ## Contributing 🤝

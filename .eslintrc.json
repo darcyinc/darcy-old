@@ -1,36 +1,40 @@
 {
   "extends": [
-    "next/core-web-vitals",
-    "plugin:jsx-a11y/recommended",
     "neon/common",
     "neon/browser",
     "neon/node",
     "neon/typescript",
-    "neon/react",
-    "neon/next",
     "neon/edge",
-    "neon/prettier"
+    "plugin:jsx-a11y/recommended",
+    "plugin:solid/typescript",
+    "plugin:prettier/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
+    "@typescript-eslint",
+    "solid",
     "jsx-a11y",
-    "validate-jsx-nesting"
+    "validate-jsx-nesting",
+    "prettier"
   ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "ignorePatterns": [
-    ".next",
-    "*.js"
+    "dist/",
+    ".solid"
   ],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/require-await": "error",
-    "@next/next/no-img-element": "off",
+    "@typescript-eslint/promise-function-async": [
+      "error",
+      {
+        "checkArrowFunctions": false
+      }
+    ],
     "promise/prefer-await-to-then": "off",
     "no-warning-comments": "off",
     "unicorn/no-unsafe-regex": "off",
@@ -38,6 +42,7 @@
     "id-length": "off",
     "validate-jsx-nesting/no-invalid-jsx-nesting": "error",
     "require-await": "off",
+    "semi": "error",
     "no-unused-vars": [
       "error",
       {
@@ -46,6 +51,7 @@
         "ignoreRestSiblings": false,
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }
