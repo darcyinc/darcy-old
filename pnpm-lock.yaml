@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@solidjs/meta': ^0.28.2
   '@solidjs/router': ^0.7.0
-  '@types/node': ^18.14.2
+  '@types/node': ^18.14.4
   '@typescript-eslint/eslint-plugin': ^5.54.0
   '@typescript-eslint/parser': ^5.54.0
   axios: ^1.3.4
@@ -38,7 +38,7 @@ dependencies:
   stylelint-config-standard-scss: 7.0.1_xczz5gvex7qa2pnzrs7ducdpai
 
 devDependencies:
-  '@types/node': 18.14.2
+  '@types/node': 18.14.4
   '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
   '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
   esbuild: 0.17.10
@@ -53,7 +53,7 @@ devDependencies:
   solid-start-node: 0.2.22_wuiowtpworfjg7n2vbvba37nn4
   stylelint: 15.2.0
   typescript: 4.9.5
-  vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+  vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
   vite-plugin-optimize-css-modules: 1.0.4_vite@4.1.4
 
 packages:
@@ -1259,7 +1259,7 @@ packages:
     engines: {node: ^14 || ^16 || ^17 || ^18 || ^19}
     dependencies:
       comment-parser: 1.3.1
-      esquery: 1.4.2
+      esquery: 1.5.0
       jsdoc-type-pratt-parser: 3.1.0
     dev: true
 
@@ -1928,8 +1928,8 @@ packages:
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
 
-  /@types/node/18.14.2:
-    resolution: {integrity: sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==}
+  /@types/node/18.14.4:
+    resolution: {integrity: sha512-VhCw7I7qO2X49+jaKcAUwi3rR+hbxT5VcYF493+Z5kMLI0DL568b7JI4IDJaxWFH0D/xwmGJNoXisyX+w7GH/g==}
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -1937,7 +1937,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 18.14.2
+      '@types/node': 18.14.4
 
   /@types/semver/7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
@@ -2763,7 +2763,7 @@ packages:
       es-get-iterator: 1.1.3
       get-intrinsic: 1.2.0
       is-arguments: 1.1.1
-      is-array-buffer: 3.0.1
+      is-array-buffer: 3.0.2
       is-date-object: 1.0.5
       is-regex: 1.1.4
       is-shared-array-buffer: 1.0.2
@@ -2870,7 +2870,7 @@ packages:
       has-proto: 1.0.1
       has-symbols: 1.0.3
       internal-slot: 1.0.5
-      is-array-buffer: 3.0.1
+      is-array-buffer: 3.0.2
       is-callable: 1.2.7
       is-negative-zero: 2.0.2
       is-regex: 1.1.4
@@ -3415,7 +3415,7 @@ packages:
       debug: 4.3.4
       escape-string-regexp: 4.0.0
       eslint: 8.35.0
-      esquery: 1.4.2
+      esquery: 1.5.0
       semver: 7.3.8
       spdx-expression-parse: 3.0.1
     transitivePeerDependencies:
@@ -3642,7 +3642,7 @@ packages:
       ci-info: 3.8.0
       clean-regexp: 1.0.0
       eslint: 8.35.0
-      esquery: 1.4.2
+      esquery: 1.5.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
       jsesc: 3.0.2
@@ -3747,7 +3747,7 @@ packages:
       eslint-utils: 3.0.0_eslint@8.35.0
       eslint-visitor-keys: 3.3.0
       espree: 9.4.1
-      esquery: 1.4.2
+      esquery: 1.5.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
       file-entry-cache: 6.0.1
@@ -3783,8 +3783,8 @@ packages:
       acorn-jsx: 5.3.2_acorn@8.8.2
       eslint-visitor-keys: 3.3.0
 
-  /esquery/1.4.2:
-    resolution: {integrity: sha512-JVSoLdTlTDkmjFmab7H/9SL9qGSyjElT3myyKp7krqjVFQCDLmj1QFaCLRFBszBKI0XVZaiiXvuPIX3ZwHe1Ng==}
+  /esquery/1.5.0:
+    resolution: {integrity: sha512-YQLXUplAwJgCydQ78IMJywZCceoqk1oH01OERdSAJc/7U2AylwjhSCLDEtqwg811idIS/9fIU5GjG73IgjKMVg==}
     engines: {node: '>=0.10'}
     dependencies:
       estraverse: 5.3.0
@@ -4231,8 +4231,8 @@ packages:
       has-tostringtag: 1.0.0
     dev: true
 
-  /is-array-buffer/3.0.1:
-    resolution: {integrity: sha512-ASfLknmY8Xa2XtB4wmbz13Wu202baeA18cJBCeCy0wXUHZF0IPyVEXqKEcd+t2fNSLLL1vC6k7lxZEojNbISXQ==}
+  /is-array-buffer/3.0.2:
+    resolution: {integrity: sha512-y+FyyR/w8vfIRq4eQcM1EYgSTnmHXPqaF+IgzgraytCFq5Xh8lllDVmAZolPJiZttZLeFSINPYMaEJ7/vWUa1w==}
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
@@ -5344,8 +5344,8 @@ packages:
     dependencies:
       csstype: 3.1.1
 
-  /solid-refresh/0.4.3_solid-js@1.6.11:
-    resolution: {integrity: sha512-7+4/gYsVi0BlM4PzT1PU1TB5nW3Hv8FWuB+Kw/ofWui7KQkWBf+dVZOrReQYHEmLCzytHUa2JysUXgzVALJmSw==}
+  /solid-refresh/0.5.0_solid-js@1.6.11:
+    resolution: {integrity: sha512-kBsHSjqBUMXD2I7cU/batNE5WlXGiB5Otob9JDx4Zl5+Vt+a5naGxjPf81fg/c4lh++IdX2GF5CORxEcVzyTgg==}
     peerDependencies:
       solid-js: ^1.3
     dependencies:
@@ -5370,7 +5370,7 @@ packages:
       sirv: 2.0.2
       solid-start: 0.2.22_glxabd56qh7kqtjq7bhdxxj5jy
       terser: 5.16.5
-      vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+      vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
     transitivePeerDependencies:
       - supports-color
 
@@ -5440,9 +5440,9 @@ packages:
       solid-start-node: 0.2.22_wuiowtpworfjg7n2vbvba37nn4
       terser: 5.16.5
       undici: 5.20.0
-      vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+      vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
       vite-plugin-inspect: 0.7.15_rollup@3.18.0+vite@4.1.4
-      vite-plugin-solid: 2.6.0_solid-js@1.6.11+vite@4.1.4
+      vite-plugin-solid: 2.6.1_solid-js@1.6.11+vite@4.1.4
       wait-on: 6.0.1_debug@4.3.4
     transitivePeerDependencies:
       - supports-color
@@ -5921,7 +5921,7 @@ packages:
       kolorist: 1.7.0
       sirv: 2.0.2
       ufo: 1.1.1
-      vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+      vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -5931,11 +5931,11 @@ packages:
     peerDependencies:
       vite: ^4.0.0 || ^3.0.0 || ^2.0.0
     dependencies:
-      vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+      vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
     dev: true
 
-  /vite-plugin-solid/2.6.0_solid-js@1.6.11+vite@4.1.4:
-    resolution: {integrity: sha512-zw9LRfLwUIDyg9oyuHdpkuO+ds98WPmZXy05AhQc7/2Zn7nWqoWm455y0zD621T8qpmJsInkwm7ttHqFLjhMWg==}
+  /vite-plugin-solid/2.6.1_solid-js@1.6.11+vite@4.1.4:
+    resolution: {integrity: sha512-/khM/ha3B5/pTWQWVJd/0n6ODPIrOcajwhbrD8Gnv37XmJJssu+KA8ssN73raMIicf2eiQKiTAV39w7dSl4Irg==}
     peerDependencies:
       solid-js: ^1.3.17 || ^1.4.0 || ^1.5.0 || ^1.6.0
       vite: ^3.0.0 || ^4.0.0
@@ -5946,13 +5946,13 @@ packages:
       babel-preset-solid: 1.6.10_@babel+core@7.21.0
       merge-anything: 5.1.4
       solid-js: 1.6.11
-      solid-refresh: 0.4.3_solid-js@1.6.11
-      vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+      solid-refresh: 0.5.0_solid-js@1.6.11
+      vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
       vitefu: 0.2.4_vite@4.1.4
     transitivePeerDependencies:
       - supports-color
 
-  /vite/4.1.4_wlyq37gek244gc22rfb2kn6efu:
+  /vite/4.1.4_ljrjoypxov5se64ibfjelu4vsu:
     resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -5977,7 +5977,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.14.2
+      '@types/node': 18.14.4
       esbuild: 0.16.17
       postcss: 8.4.21
       resolve: 1.22.1
@@ -5994,7 +5994,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.1.4_wlyq37gek244gc22rfb2kn6efu
+      vite: 4.1.4_ljrjoypxov5se64ibfjelu4vsu
 
   /vue-eslint-parser/9.1.0_eslint@8.35.0:
     resolution: {integrity: sha512-NGn/iQy8/Wb7RrRa4aRkokyCZfOUWk19OP5HP6JEozQFX5AoS/t+Z0ZN7FY4LlmWc4FNI922V7cvX28zctN8dQ==}
@@ -6007,7 +6007,7 @@ packages:
       eslint-scope: 7.1.1
       eslint-visitor-keys: 3.3.0
       espree: 9.4.1
-      esquery: 1.4.2
+      esquery: 1.5.0
       lodash: 4.17.21
       semver: 7.3.8
     transitivePeerDependencies:
