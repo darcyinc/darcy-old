@@ -1,0 +1,18 @@
+# Editor configuration for files in src/*.tsx
+root = true
+
+[*.tsx]
+# Use 2 spaces for indentation
+indent_style = space
+indent_size = 2
+
+# Use semicolons at the end of statements
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Use single quotes for strings
+quote_type = single
+
+# Always include parentheses around arrow function parameters
+arrow_parens = always
