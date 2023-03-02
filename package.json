@@ -4,7 +4,9 @@
     "dev": "solid-start dev",
     "build": "solid-start build",
     "start": "solid-start start",
-    "lint": "eslint src && stylelint src/**/*.scss src/**/*.css"
+    "lint": "pnpm run lint:eslint && pnpm run lint:css",
+    "lint:eslint": "eslint src --cache",
+    "lint:css": "stylelint src/**/*.scss src/**/*.css --cache"
   },
   "type": "module",
   "devDependencies": {

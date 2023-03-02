@@ -1,4 +1,9 @@
+# Caching
+.cache
+.eslintcache
+.stylelintcache
 
+# Project
 dist
 .solid
 .output
