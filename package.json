@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
-    "start": "solid-start start"
+    "start": "solid-start start",
+    "lint": "eslint src && stylelint src/**/*.scss src/**/*.css"
   },
   "type": "module",
   "devDependencies": {
@@ -17,8 +18,10 @@
     "eslint-plugin-solid": "^0.10.0",
     "eslint-plugin-validate-jsx-nesting": "^0.1.0",
     "postcss": "^8.4.21",
+    "postcss-scss": "^4.0.6",
     "prettier": "2.8.4",
     "solid-start-node": "^0.2.22",
+    "stylelint": "^15.2.0",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
     "vite-plugin-optimize-css-modules": "^1.0.4"
@@ -30,7 +33,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "sass": "^1.58.3",
     "solid-js": "^1.6.11",
-    "solid-start": "^0.2.22"
+    "solid-start": "^0.2.22",
+    "stylelint-config-standard-scss": "^7.0.1"
   },
   "engines": {
     "node": ">=16.8"
