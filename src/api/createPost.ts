@@ -1,4 +1,4 @@
-import { axios } from './axios';
+import fetcher from './fetcher';
 
 interface CreatePostData {
   content: string;
@@ -11,7 +11,7 @@ interface PostData extends Omit<CreatePostData, 'files'> {
 }
 
 const doRequest = (finalData: CreatePostData) => {
-  axios.post('/posts', finalData).then(console.log).catch(console.log);
+  fetcher.post('/posts', finalData).then(console.log).catch(console.log);
 };
 
 export default function createPost(data: PostData) {

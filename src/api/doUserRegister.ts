@@ -1,10 +1,10 @@
-import { axios } from './axios';
+import fetcher from './fetcher';
 
 export default async function doUserLogin(data: {
   email: string;
   password: string;
 }) {
-  const req = await axios.post('/auth/users', data);
+  const req = await fetcher.post('/auth/users', data);
 
   return req.data;
 }
