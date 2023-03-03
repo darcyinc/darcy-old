@@ -9,5 +9,6 @@ export interface AccountData {
   };
 }
 
-// eslint-disable-next-line solid/reactivity
-export const useAccountStore = () => createSignal<AccountData>({});
+const [signal, setSignal] = createSignal<AccountData>({});
+
+export const useAccountStore = () => [signal, setSignal] as const;
