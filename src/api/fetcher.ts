@@ -29,6 +29,13 @@ if (typeof window !== 'undefined') {
 }
 
 export async function request(path: `/${string}`, options?: RequestInit) {
+  if (options?.body) {
+    options.headers = {
+      ...options.headers,
+      'Content-Type': 'application/json',
+    };
+  }
+
   const req = await fetch(`${defaultOptions.baseURL}${path}`, {
     ...defaultOptions,
     ...options,
