@@ -3,7 +3,7 @@
 import type { Navigator } from '@solidjs/router';
 import { createEffect } from 'solid-js';
 import getUserFromToken from '~/api/getUserFromToken';
-import { useAccountStore } from '~/context/accountStore';
+import { useAccountStore } from '~/hooks/accountStore';
 
 export interface ValidUserCheckProps {
   // without this, useNavigate() throws an error

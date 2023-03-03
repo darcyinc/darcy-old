@@ -1,5 +1,5 @@
 import fetcher from './fetcher';
-import type { AccountData } from '~/context/accountStore';
+import type { AccountData } from '~/hooks/accountStore';
 
 export default async function getUserFromToken(): Promise<AccountData> {
   const req = await fetcher.get('/users/@me');
