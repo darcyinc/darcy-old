@@ -1,8 +1,9 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
 import { A, Title } from 'solid-start';
-import Logo from '../../../assets/logo-cropped.png';
 import styles from '../page.module.scss';
+import Logo from '~/assets/logo-cropped.png?webp&w=80&h=72&imagetools';
+import type { SyntheticEvent } from '~/types/imagetools';
 import emailRegex from '~/utils/emailRegex';
 
 const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));
@@ -41,22 +42,20 @@ export default function Home() {
       setPasswordError('A senha deve ter no mínimo 8 caracteres.');
   };
 
-  const handleEmail = (e: Event & { currentTarget: HTMLInputElement }) => {
+  const handleEmail = (e: SyntheticEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setEmail(value);
     handleValidations();
   };
 
-  const handlePassword = (e: Event & { currentTarget: HTMLInputElement }) => {
+  const handlePassword = (e: SyntheticEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
 
     setPassword(value);
     handleValidations();
   };
 
-  const handleSubmit = async (
-    e: Event & { currentTarget: HTMLFormElement }
-  ) => {
+  const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (hasValidationErrors()) return;

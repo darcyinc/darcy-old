@@ -9,6 +9,15 @@
     "lint:css": "stylelint src/**/*.scss src/**/*.css --cache"
   },
   "type": "module",
+  "dependencies": {
+    "@solidjs/meta": "^0.28.2",
+    "@solidjs/router": "^0.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "sass": "^1.58.3",
+    "solid-js": "^1.6.11",
+    "solid-start": "^0.2.22",
+    "stylelint-config-standard-scss": "^7.0.1"
+  },
   "devDependencies": {
     "@types/node": "^18.14.4",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
@@ -26,16 +35,8 @@
     "stylelint": "^15.2.0",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
+    "vite-imagetools": "^4.0.18",
     "vite-plugin-optimize-css-modules": "^1.0.4"
-  },
-  "dependencies": {
-    "@solidjs/meta": "^0.28.2",
-    "@solidjs/router": "^0.7.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "sass": "^1.58.3",
-    "solid-js": "^1.6.11",
-    "solid-start": "^0.2.22",
-    "stylelint-config-standard-scss": "^7.0.1"
   },
   "engines": {
     "node": ">=16.8"
