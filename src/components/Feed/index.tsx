@@ -1,6 +1,6 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 import loadMoreObserver from './loadMoreObserver';
-import { FeedContainer, LoadMore } from './styles';
+import { FeedContainer, loadMore } from './styles';
 
 export default function Feed() {
   // eslint-disable-next-line solid/reactivity
@@ -31,7 +31,7 @@ export default function Feed() {
 
   createEffect(() => {
     // if the span element "load more" is visible, try to load more posts
-    loadMoreObserver(LoadMore, loadMorePosts);
+    loadMoreObserver(loadMore, loadMorePosts);
 
     // If user is at or near the bottom of the page, load more posts
     window.addEventListener('scroll', () => {
@@ -50,7 +50,7 @@ export default function Feed() {
   return (
     <FeedContainer>
       <span
-        class={LoadMore}
+        class={loadMore}
         onClick={loadMorePosts}
         onKeyDown={loadMorePosts}
         role="button"

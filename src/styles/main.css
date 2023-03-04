@@ -3,8 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-  // Optimize font rendering
   text-rendering: optimizelegibility;
 }
 
@@ -28,7 +26,6 @@ button {
   cursor: pointer;
 }
 
-// Fix browser navigation bar on mobile
 html,
 body {
   height: 100%;
