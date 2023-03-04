@@ -1,10 +1,10 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
 import { A, Title } from 'solid-start';
-import styles from '../page.module.scss';
 import Logo from '~/assets/logo-cropped.png?webp&w=80&h=72&imagetools';
 import type { SyntheticEvent } from '~/types/imagetools';
 import emailRegex from '~/utils/emailRegex';
+import { Actions, Card, Container, Form, LogoContainer } from './styles';
 
 const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));
 
@@ -80,32 +80,30 @@ export default function Home() {
   };
 
   return (
-    <div class={styles.container}>
+    <Container>
       <Title>Darcy - Log in</Title>
       <ValidUserCheck redirectToIfLogged="/" navigate={navigate} />
 
-      <div class={styles.card}>
-        <div class={styles.logoContainer}>
+      <Card>
+        <LogoContainer>
           <img
             alt="Logo"
-            class={styles.logo}
+            // class={styles.logo}
             draggable={false}
             height={72}
             src={Logo}
             width={80}
           />
           <span>Darcy</span>
-        </div>
+        </LogoContainer>
 
-        <form class={styles.form} onSubmit={handleSubmit}>
-          <div class={styles.email}>
-            <div class={styles.label}>
+        <Form onSubmit={handleSubmit}>
+          <div
+          // class={styles.email}
+          >
+            <div>
               <label for="email">E-mail</label>
-              {emailError && (
-                <label class={styles.error} for="email">
-                  {emailError()}
-                </label>
-              )}
+              {emailError && <label for="email">{emailError()}</label>}
             </div>
 
             <input
@@ -118,14 +116,12 @@ export default function Home() {
             />
           </div>
 
-          <div class={styles.password}>
-            <div class={styles.label}>
+          <div
+          // class={styles.password}
+          >
+            <div>
               <label for="password">Senha</label>
-              {passwordError && (
-                <label class={styles.error} for="password">
-                  {passwordError()}
-                </label>
-              )}
+              {passwordError && <label for="password">{passwordError()}</label>}
             </div>
 
             <input
@@ -138,9 +134,9 @@ export default function Home() {
             />
           </div>
 
-          <div class={styles.actions}>
+          <Actions>
             <button
-              class={styles.login}
+              // class={styles.login}
               disabled={
                 emailError().length > 0 ||
                 passwordError().length > 0 ||
@@ -159,9 +155,9 @@ export default function Home() {
               {' - '}
               <a href="#forgot_password">Esqueceu sua senha?</a>
             </span>
-          </div>
-        </form>
-      </div>
-    </div>
+          </Actions>
+        </Form>
+      </Card>
+    </Container>
   );
 }

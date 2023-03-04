@@ -9,9 +9,9 @@ import {
   Meta,
   Routes,
   Scripts,
-  Title,
+  Title
 } from 'solid-start';
-import '~/styles/reset.scss';
+import '~/styles/reset.css';
 
 export default function Root() {
   return (
