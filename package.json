@@ -6,13 +6,12 @@
     "start": "solid-start start",
     "lint": "pnpm run lint:eslint && pnpm run lint:css",
     "lint:eslint": "eslint src --cache",
-    "lint:css": "stylelint src/**/*.css src/**/*.css --cache"
+    "lint:css": "stylelint src/**/*.css --cache"
   },
   "type": "module",
   "dependencies": {
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.7.0",
-    "emotion-solid": "^1.1.1",
     "solid-js": "^1.6.11",
     "solid-start": "^0.2.22",
     "solid-styled-components": "^0.28.5"

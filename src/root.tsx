@@ -9,7 +9,7 @@ import {
   Meta,
   Routes,
   Scripts,
-  Title
+  Title,
 } from 'solid-start';
 import '~/styles/reset.css';
 

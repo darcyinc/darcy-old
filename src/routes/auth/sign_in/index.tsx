@@ -1,10 +1,10 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
 import { A, Title } from 'solid-start';
+import { Actions, Card, Container, Form, LogoContainer } from './styles';
 import Logo from '~/assets/logo-cropped.png?webp&w=80&h=72&imagetools';
 import type { SyntheticEvent } from '~/types/imagetools';
 import emailRegex from '~/utils/emailRegex';
-import { Actions, Card, Container, Form, LogoContainer } from './styles';
 
 const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));
 
