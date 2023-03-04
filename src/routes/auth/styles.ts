@@ -21,7 +21,6 @@ export const CardContainer = styled.div`
 export const SpanDivider = styled.span`
   display: flex;
   align-items: center;
-
   gap: 10px;
   width: 50%;
   font-size: 1.3rem;
@@ -142,7 +141,6 @@ export const FormFieldContainer = styled.div`
     border: none;
     font-size: 1.05rem;
     height: 50px;
-
     &::placeholder {
       // 60% opacity
       // color: #0009;
@@ -156,7 +154,6 @@ export const FormFieldContainer = styled.div`
     font-weight: bolder;
     margin-left: auto;
     text-align: right;
-
     // if label is empty, set the height to the default line-height
     height: 1.2rem;
   }
