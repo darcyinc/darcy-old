@@ -1,57 +1,77 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
-import { A, Title } from 'solid-start';
+import { A, Style, Title } from 'solid-start';
 import styles from '../page.module.scss';
-import Logo from '~/assets/logo-cropped.png?webp&w=80&h=72&imagetools';
+import FacebookLogo from '~/assets/facebook-logo-signin.png';
+import GoogleLogo from '~/assets/google-logo-signin.png';
+import DarcyLogo from '~/assets/logo-cropped.png?webp&w=80&h=80&imagetools';
 import type { SyntheticEvent } from '~/types/imagetools';
 import emailRegex from '~/utils/emailRegex';
 
 const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));
 
-const EMAIL_REGEX = emailRegex();
+interface LoginData {
+  email: string;
+  errors?: {
+    email?: string;
+    password?: string;
+  };
+
+  password: string;
+}
 
 export default function Home() {
-  const [email, setEmail] = createSignal('');
-  const [password, setPassword] = createSignal('');
+  const navigate = useNavigate();
 
-  const [emailError, setEmailError] = createSignal('');
-  const [passwordError, setPasswordError] = createSignal('');
+  const [data, setData] = createSignal<LoginData>({
+    email: '',
+    password: '',
+  });
 
   const hasValidationErrors = createMemo(
-    () => emailError() !== '' || passwordError() !== ''
+    () => data().errors?.email ?? data().errors?.password
   );
-
-  const navigate = useNavigate();
 
   const handleValidations = () => {
     // Cleanup errors
-    setEmailError('');
-    setPasswordError('');
-
-    // Length validation
-    if (email().length === 0) setEmailError('O campo email é obrigatório.');
-    if (password().length === 0)
-      setPasswordError('O campo senha é obrigatório.');
+    setData((prev) => ({ ...prev, errors: {} }));
 
     // Email validation
-    if (!email().includes('@') || !EMAIL_REGEX.test(email()))
-      setEmailError('O campo email deve ser um email válido.');
+    if (data().email.length === 0)
+      return setData((prev) => ({
+        ...prev,
+        errors: { email: 'O campo email é obrigatório.' },
+      }));
+
+    if (!emailRegex().test(data().email))
+      return setData((prev) => ({
+        ...prev,
+        errors: { email: 'O campo email deve ser um email válido.' },
+      }));
 
     // Password validation
-    if (password().length < 8)
-      setPasswordError('A senha deve ter no mínimo 8 caracteres.');
+    if (data().password.length === 0)
+      return setData((prev) => ({
+        ...prev,
+        errors: { password: 'O campo senha é obrigatório.' },
+      }));
+
+    if (data().password.length < 8)
+      return setData((prev) => ({
+        ...prev,
+        errors: { password: 'A senha deve ter no mínimo 8 caracteres.' },
+      }));
   };
 
   const handleEmail = (e: SyntheticEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-    setEmail(value);
+    setData((prev) => ({ ...prev, email: value }));
     handleValidations();
   };
 
   const handlePassword = (e: SyntheticEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
-
-    setPassword(value);
+    setData((prev) => ({ ...prev, password: value }));
     handleValidations();
   };
 
@@ -62,11 +82,19 @@ export default function Home() {
 
     try {
       const doUserLogin = (await import('~/api/doUserLogin')).default;
-      const res = await doUserLogin({ email: email(), password: password() });
+      const res = await doUserLogin({
+        email: data().email,
+        password: data().password,
+      });
 
       if (res.errors?.[0]) {
-        setEmailError(res.errors[0].message);
-        setPasswordError(res.errors[0].message);
+        setData((prev) => ({
+          ...prev,
+          errors: {
+            email: res.errors[0].message,
+            password: res.errors[0].message,
+          },
+        }));
         return;
       }
 
@@ -74,8 +102,13 @@ export default function Home() {
       window.dispatchEvent(new Event('storage'));
       navigate('/');
     } catch {
-      setEmailError('Ocorreu um erro ao tentar se autenticar.');
-      setPasswordError('Ocorreu um erro ao tentar se autenticar.');
+      setData((prev) => ({
+        ...prev,
+        errors: {
+          email: 'Ocorreu um erro ao tentar se autenticar.',
+          password: 'Ocorreu um erro ao tentar se autenticar.',
+        },
+      }));
     }
   };
 
@@ -84,80 +117,111 @@ export default function Home() {
       <Title>Darcy - Log in</Title>
       <ValidUserCheck redirectToIfLogged="/" navigate={navigate} />
 
+      <Style>
+        {`
+        body {
+          background-color: #191b22;
+        }
+  `}
+      </Style>
+
       <div class={styles.card}>
         <div class={styles.logoContainer}>
           <img
             alt="Logo"
             class={styles.logo}
+            decoding="async"
             draggable={false}
             height={72}
-            src={Logo}
+            src={DarcyLogo}
             width={80}
           />
           <span>Darcy</span>
         </div>
 
-        <form class={styles.form} onSubmit={handleSubmit}>
-          <div class={styles.email}>
-            <div class={styles.label}>
-              <label for="email">E-mail</label>
-              {emailError && (
-                <label class={styles.error} for="email">
-                  {emailError()}
-                </label>
-              )}
-            </div>
+        <div class={styles.oauth}>
+          <button class={styles.oauthButton} data-provider="google">
+            <img
+              decoding="async"
+              draggable={false}
+              src={GoogleLogo}
+              alt="Google Logo"
+              height={30}
+              width={30}
+            />
+            <span>Entrar com Google</span>
+          </button>
 
+          <button class={styles.oauthButton} data-provider="facebook">
+            <img
+              decoding="async"
+              draggable={false}
+              src={FacebookLogo}
+              alt="React Logo"
+              height={30}
+              width={30}
+            />
+            <span>Entrar com Facebook</span>
+          </button>
+        </div>
+        {/* 
+        <div class={styles.divider}>
+          <span>ou</span>
+        </div> */}
+
+        <span class={styles.divider}>ou</span>
+
+        <form onSubmit={handleSubmit}>
+          <div class={styles.field}>
             <input
               id="email"
               name="email"
               onInput={handleEmail}
-              placeholder="me@example.com"
+              placeholder="E-mail"
               type="email"
-              value={email()}
+              value={data().email}
             />
+
+            <label class={styles.error} for="email">
+              {data().errors?.email}
+            </label>
           </div>
 
-          <div class={styles.password}>
-            <div class={styles.label}>
-              <label for="password">Senha</label>
-              {passwordError && (
-                <label class={styles.error} for="password">
-                  {passwordError()}
-                </label>
-              )}
-            </div>
-
+          <div class={styles.field}>
             <input
               id="password"
               name="password"
               onInput={handlePassword}
-              placeholder="********"
+              placeholder="Senha"
               type="password"
-              value={password()}
+              value={data().password}
             />
+
+            <label class={styles.error} for="password">
+              {data().errors?.password}
+            </label>
           </div>
 
           <div class={styles.actions}>
             <button
               class={styles.login}
               disabled={
-                emailError().length > 0 ||
-                passwordError().length > 0 ||
-                email().length === 0 ||
-                password().length === 0 ||
-                password().length < 8 ||
-                !email().includes('@')
+                Boolean(data().errors?.email) ||
+                Boolean(data().errors?.password) ||
+                data().email.length === 0 ||
+                data().password.length === 0 ||
+                data().password.length < 8 ||
+                !data().email.includes('@')
               }
               type="submit"
             >
-              Entrar
+              Acessar sua conta
             </button>
 
             <span>
               <A href="/auth/sign_up">Criar conta</A>
               {' - '}
-              <a href="#forgot_password">Esqueceu sua senha?</a>
+              <A href="#forgot_password">Esqueceu sua senha?</A>
             </span>
           </div>
         </form>
