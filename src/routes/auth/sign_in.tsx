@@ -1,7 +1,7 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
 import { A, Style, Title } from 'solid-start';
-import styles from '../page.module.scss';
+import styles from './page.module.scss';
 import FacebookLogo from '~/assets/facebook-logo-signin.png';
 import GoogleLogo from '~/assets/google-logo-signin.png';
 import DarcyLogo from '~/assets/logo-cropped.png?webp&w=80&h=80&imagetools';
