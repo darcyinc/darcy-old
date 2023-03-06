@@ -1,6 +1,6 @@
 import { lazy } from 'solid-js';
 import { useNavigate } from 'solid-start';
-import './globals.scss';
+import './globals.css';
 
 const Feed = lazy(() => import('~/components/Feed'));
 const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));

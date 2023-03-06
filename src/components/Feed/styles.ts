@@ -1,4 +1,6 @@
-.feed {
+import { css, styled } from 'solid-styled-components';
+
+export const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,12 +19,12 @@
     padding-bottom: 90px;
     width: 97%;
   }
+`;
 
-  .loadMore {
-    color: #fff;
-    &:hover {
-      color: #ccc;
-      cursor: pointer;
-    }
+export const loadMore = css`
+  color: #fff;
+  &:hover {
+    color: #ccc;
+    cursor: pointer;
   }
-}
+`;

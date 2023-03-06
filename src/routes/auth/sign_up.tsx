@@ -1,8 +1,19 @@
 import { useNavigate } from '@solidjs/router';
 import { createMemo, createSignal, lazy } from 'solid-js';
 import { A, Style, Title } from 'solid-start';
-import styles from './page.module.scss';
 import type { LoginData } from './sign_in';
+import {
+  ActionsContainer,
+  AuthButtonContainer,
+  AuthContainer,
+  Button,
+  CardContainer,
+  FormContainer,
+  FormFieldContainer,
+  LogoContainer,
+  PageContainer,
+  SpanDivider,
+} from './styles';
 import FacebookLogo from '~/assets/facebook-logo-signin.png?webp&w=30&h=30&imagetools';
 import GoogleLogo from '~/assets/google-logo-signin.png?webp&w=30&h=30&imagetools';
 import DarcyLogo from '~/assets/logo-cropped.png?webp&w=80&h=80&imagetools';
@@ -124,7 +135,7 @@ export default function Home() {
   };
 
   return (
-    <div class={styles.container}>
+    <PageContainer>
       <Title>Darcy - Registro</Title>
       <ValidUserCheck redirectToIfLogged="/" navigate={navigate} />
 
@@ -133,14 +144,13 @@ export default function Home() {
         body {
           background-color: #191b22;
         }
-  `}
+        `}
       </Style>
 
-      <div class={styles.card}>
-        <div class={styles.logoContainer}>
+      <CardContainer>
+        <LogoContainer>
           <img
             alt="Logo"
-            class={styles.logo}
             decoding="async"
             draggable={false}
             height={72}
@@ -148,10 +158,10 @@ export default function Home() {
             width={80}
           />
           <span>Darcy</span>
-        </div>
+        </LogoContainer>
 
-        <div class={styles.oauth}>
-          <button class={styles.oauthButton} data-provider="google">
+        <AuthContainer>
+          <AuthButtonContainer data-provider="google">
             <img
               decoding="async"
               draggable={false}
@@ -161,9 +171,9 @@ export default function Home() {
               width={30}
             />
             <span>Entrar com Google</span>
-          </button>
+          </AuthButtonContainer>
 
-          <button class={styles.oauthButton} data-provider="facebook">
+          <AuthButtonContainer data-provider="facebook">
             <img
               decoding="async"
               draggable={false}
@@ -173,13 +183,13 @@ export default function Home() {
               width={30}
             />
             <span>Entrar com Facebook</span>
-          </button>
-        </div>
+          </AuthButtonContainer>
+        </AuthContainer>
 
-        <span class={styles.divider}>ou</span>
+        <SpanDivider>ou</SpanDivider>
 
-        <form onSubmit={handleSubmit}>
-          <div class={styles.field}>
+        <FormContainer onSubmit={handleSubmit}>
+          <FormFieldContainer>
             <input
               id="email"
               name="email"
@@ -189,12 +199,10 @@ export default function Home() {
               value={data().email}
             />
 
-            <label class={styles.error} for="email">
-              {data().errors?.email}
-            </label>
-          </div>
+            <label for="email">{data().errors?.email}</label>
+          </FormFieldContainer>
 
-          <div class={styles.field}>
+          <FormFieldContainer>
             <input
               id="password"
               name="password"
@@ -204,12 +212,10 @@ export default function Home() {
               value={data().password}
             />
 
-            <label class={styles.error} for="password">
-              {data().errors?.password}
-            </label>
-          </div>
+            <label for="password">{data().errors?.password}</label>
+          </FormFieldContainer>
 
-          <div class={styles.field}>
+          <FormFieldContainer>
             <input
               id="confirmPassword"
               name="confirmPassword"
@@ -219,14 +225,13 @@ export default function Home() {
               value={data().confirmPassword}
             />
 
-            <label class={styles.error} for="confirmPassword">
+            <label for="confirmPassword">
               {data().errors?.confirmPassword}
             </label>
-          </div>
+          </FormFieldContainer>
 
-          <div class={styles.actions}>
-            <button
-              class={styles.login}
+          <ActionsContainer>
+            <Button
               disabled={
                 hasValidationErrors() ||
                 data().email.length === 0 ||
@@ -239,14 +244,14 @@ export default function Home() {
               type="submit"
             >
               Criar conta
-            </button>
+            </Button>
 
             <span>
               <A href="/auth/sign_in">Já tem uma conta?</A>
             </span>
-          </div>
-        </form>
-      </div>
-    </div>
+          </ActionsContainer>
+        </FormContainer>
+      </CardContainer>
+    </PageContainer>
   );
 }
