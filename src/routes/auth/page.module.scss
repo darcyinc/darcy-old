@@ -1,132 +1,201 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #191b22;
-
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
 
   .card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 60px;
+    height: fit-content;
 
-    background-color: #282c37;
-    border-radius: 10px;
-    padding: 94px;
-
-    height: 500px;
-    width: 600px;
+    // make mobile have a better experience
+    @media (max-width: 512px) {
+      padding: 0 20px;
+      padding-bottom: 60px;
+    }
 
     .logoContainer {
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 10px;
-
-      img {
-        height: 72px;
-        width: 80px;
-      }
+      margin-top: 70px;
 
       span {
         font-size: 2rem;
-        font-weight: bold;
+        font-weight: bolder;
         user-select: none;
       }
     }
 
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-
-      width: 100%;
-
-      .label {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.3rem;
-        width: 100%;
-
-        label {
-          font-weight: bold;
-          white-space: nowrap;
-
-          &.error {
-            color: #ff0000;
-            font-weight: normal;
-            font-size: 1rem;
-            white-space: normal;
-            text-align: right;
-          }
-        }
-      }
-
-      input {
-        border: none;
-        border-radius: 10px;
-
-        background-color: #131419;
-        margin-top: 3px;
-        padding: 10px;
-
-        font-size: 1rem;
-
-        width: 100%;
-      }
-    }
-
-    .actions {
+    .oauth {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 25px;
+      gap: 10px;
+      width: 340px;
 
-      button {
+      @media (max-width: 512px) {
+        width: 95%;
+      }
+
+      p {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        user-select: none;
+      }
+
+      .oauthButton {
         display: flex;
+        align-items: center;
         justify-content: center;
-
-        background-color: #6a17f1;
-        color: #fff;
-
-        border: none;
-        border-radius: 10px;
-        padding: 10px;
-
-        font-size: 1.1rem;
-        font-weight: bold;
-
-        text-transform: uppercase;
-
-        transition: 0.5s;
-
+        gap: 10px;
+        border-radius: 25px;
+        height: 50px;
         width: 100%;
+        transition: background-color 0.2s ease-in-out;
 
-        &:hover {
-          background-color: #640df0;
-          cursor: pointer;
+        span {
+          font-size: 1rem;
+          user-select: none;
         }
 
-        &[disabled] {
-          background-color: #616161;
-          cursor: not-allowed;
+        &[data-provider='google'] {
+          background-color: #fff;
+
+          &:hover {
+            background-color: #d6d6d6;
+          }
+
+          &:focus {
+            outline: 2px solid #5c37ff;
+          }
+
+          span {
+            color: #000;
+          }
+        }
+
+        &[data-provider='facebook'] {
+          background-color: #1877f2;
+
+          &:hover {
+            background-color: #076bee;
+          }
+
+          span {
+            color: #fff;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    span.divider {
+      display: flex;
+      align-items: center;
+
+      // make ::before and ::after have a margin
+      gap: 10px;
+      width: 50%;
+      font-size: 1.3rem;
+      font-weight: bolder;
+      user-select: none;
+
+      &::before,
+      &::after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: #383838;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-width: 220px;
+        width: 100%;
+        max-width: 360px;
+
+        input {
+          // background-color: #d9d9d9;
+          background-color: #2b3446;
+          color: #fff;
+          padding: 18px 16px;
+          border-radius: 7px;
+          border: none;
+          font-size: 1.05rem;
+          height: 50px;
+
+          &::placeholder {
+            // 60% opacity
+            // color: #0009;
+            color: #8b8b8b;
+          }
+        }
+
+        label {
+          color: red;
+          font-size: 1.05rem;
+          font-weight: bolder;
+          margin-left: auto;
+          text-align: right;
+
+          // if label is empty, set the height to the default line-height
+          height: 1.2rem;
         }
       }
 
-      span {
-        color: #7a7b81;
-        user-select: none;
+      .actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        min-width: 220px;
+        width: 100%;
+        max-width: 330px;
 
-        a {
+        button {
+          background-color: #6a17f1;
+          border-radius: 30px;
+          color: #fff;
+          font-weight: 600;
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          padding: 13px 0;
+          width: 100%;
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            background-color: #5c37ff;
+          }
+
+          &:disabled {
+            background-color: #6d6d6d;
+            color: #fff;
+            cursor: not-allowed;
+          }
+        }
+
+        /* stylelint-disable-next-line no-descending-specificity */
+        span,
+        span a {
           color: #7a7b81;
           text-decoration: none;
 
-          &:hover {
+          & a:hover {
             color: #fff;
             text-decoration: underline;
           }
