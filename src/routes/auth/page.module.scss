@@ -5,9 +5,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 67px;
+    gap: 60px;
     height: fit-content;
 
+    // make mobile have a better experience
     @media (max-width: 512px) {
       padding: 0 20px;
       padding-bottom: 60px;
