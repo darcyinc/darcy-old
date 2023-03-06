@@ -10,7 +10,7 @@ import emailRegex from '~/utils/emailRegex';
 
 const ValidUserCheck = lazy(() => import('~/components/ValidUserCheck'));
 
-interface LoginData {
+export interface LoginData {
   email: string;
   errors?: {
     email?: string;
@@ -28,8 +28,8 @@ export default function Home() {
     password: '',
   });
 
-  const hasValidationErrors = createMemo(
-    () => data().errors?.email ?? data().errors?.password
+  const hasValidationErrors = createMemo(() =>
+    Boolean(data().errors?.email ?? data().errors?.password)
   );
 
   const handleValidations = () => {
@@ -114,7 +114,7 @@ export default function Home() {
 
   return (
     <div class={styles.container}>
-      <Title>Darcy - Log in</Title>
+      <Title>Darcy - Login</Title>
       <ValidUserCheck redirectToIfLogged="/" navigate={navigate} />
 
       <Style>
@@ -202,8 +202,7 @@ export default function Home() {
             <button
               class={styles.login}
               disabled={
-                Boolean(data().errors?.email) ||
-                Boolean(data().errors?.password) ||
+                Boolean(hasValidationErrors()) ||
                 data().email.length === 0 ||
                 data().password.length === 0 ||
                 data().password.length < 8 ||
