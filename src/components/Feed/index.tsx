@@ -1,5 +1,3 @@
-'use client';
-
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 import loadMoreObserver from './loadMoreObserver';
 import { FeedContainer, LoadMore } from './styles';

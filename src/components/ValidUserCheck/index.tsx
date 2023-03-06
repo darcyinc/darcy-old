@@ -1,5 +1,3 @@
-'use client';
-
 import type { Navigator } from '@solidjs/router';
 import { createEffect } from 'solid-js';
 import getUserFromToken from '~/api/getUserFromToken';
