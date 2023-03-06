@@ -164,10 +164,6 @@ export default function Home() {
             <span>Entrar com Facebook</span>
           </button>
         </div>
-        {/* 
-        <div class={styles.divider}>
-          <span>ou</span>
-        </div> */}
 
         <span class={styles.divider}>ou</span>
 
