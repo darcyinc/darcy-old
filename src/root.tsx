@@ -6,6 +6,7 @@ import {
   FileRoutes,
   Head,
   Html,
+  Link,
   Meta,
   Routes,
   Scripts,
@@ -23,7 +24,20 @@ export default function Root() {
 
         <Meta name="theme-color" content="#000000" />
         <Meta name="color-scheme" content="dark" />
+
+        {/* Fonts */}
+        <Link rel="preconnect" href="https://fonts.googleapis.com" />
+        <Link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <Link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </Head>
+
       <Body>
         <Suspense>
           <ErrorBoundary>
