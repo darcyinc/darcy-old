@@ -80,21 +80,9 @@ export default function Home() {
       }));
   };
 
-  const handleEmail = (e: SyntheticEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setData((prev) => ({ ...prev, email: value }));
-    handleValidations();
-  };
-
-  const handlePassword = (e: SyntheticEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setData((prev) => ({ ...prev, password: value }));
-    handleValidations();
-  };
-
-  const handleConfirmPassword = (e: SyntheticEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
-    setData((prev) => ({ ...prev, confirmPassword: value }));
+  const handleInput = (e: SyntheticEvent<HTMLInputElement>) => {
+    const { value, name } = e.currentTarget;
+    setData((prev) => ({ ...prev, [name]: value }));
     handleValidations();
   };
 
@@ -195,7 +183,7 @@ export default function Home() {
             <input
               id="email"
               name="email"
-              onInput={handleEmail}
+              onInput={handleInput}
               placeholder="E-mail"
               type="email"
               value={data().email}
@@ -210,7 +198,7 @@ export default function Home() {
             <input
               id="password"
               name="password"
-              onInput={handlePassword}
+              onInput={handleInput}
               placeholder="Senha"
               type="password"
               value={data().password}
@@ -225,7 +213,7 @@ export default function Home() {
             <input
               id="confirmPassword"
               name="confirmPassword"
-              onInput={handleConfirmPassword}
+              onInput={handleInput}
               placeholder="Confirmar senha"
               type="password"
               value={data().confirmPassword}
