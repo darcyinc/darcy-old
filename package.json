@@ -11,15 +11,15 @@
   "dependencies": {
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.7.0",
-    "solid-js": "^1.6.11",
-    "solid-start": "^0.2.22",
+    "solid-js": "^1.6.12",
+    "solid-start": "^0.2.23",
     "solid-styled-components": "^0.28.5"
   },
   "devDependencies": {
-    "@types/node": "^18.14.5",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "esbuild": "^0.17.10",
+    "@types/node": "^18.14.6",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "esbuild": "^0.17.11",
     "eslint": "^8.35.0",
     "eslint-config-neon": "^0.1.40",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -27,11 +27,10 @@
     "eslint-plugin-solid": "^0.10.0",
     "eslint-plugin-validate-jsx-nesting": "^0.1.0",
     "prettier": "2.8.4",
-    "solid-start-node": "^0.2.22",
+    "solid-start-node": "^0.2.23",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
-    "vite-imagetools": "^4.0.18",
-    "vite-plugin-optimize-css-modules": "^1.0.4"
+    "vite-imagetools": "^4.0.18"
   },
   "engines": {
     "node": ">=16.8"
