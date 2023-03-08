@@ -1,7 +1,13 @@
-import { createEffect, createSignal, onCleanup } from 'solid-js';
+import { createEffect, createSignal, For, onCleanup } from 'solid-js';
 import FeedSorter from './FeedSorter';
 import loadMoreObserver from './loadMoreObserver';
-import { FeedContainer, FeedDivider, loadMore } from './styles';
+import {
+  FeedContainer,
+  FeedDivider,
+  loadMore,
+  MobileFeedHeader,
+} from './styles';
+import DarcyLogo from '~/assets/logo-cropped.png?webp&w=50&height=50&imagetools';
 
 export default function Feed() {
   // eslint-disable-next-line solid/reactivity
@@ -48,21 +54,37 @@ export default function Feed() {
     if (timeout) clearTimeout(timeout);
   });
 
+  const fakeArray = Array.from({ length: 30 });
+
   return (
-    <FeedContainer>
-      <FeedSorter />
+    <>
+      <MobileFeedHeader>
+        <img src={DarcyLogo} alt="Logo" />
+        <span>Darcy</span>
+      </MobileFeedHeader>
 
-      <FeedDivider />
+      <FeedContainer>
+        <FeedSorter />
 
-      <span
-        class={loadMore}
-        onClick={loadMorePosts}
-        onKeyDown={loadMorePosts}
-        role="button"
-        tabIndex={0}
-      >
-        Clique para carregar mais posts
-      </span>
-    </FeedContainer>
+        <For each={fakeArray}>
+          {(_, index) => (
+            <>
+              <h1>Post {index()}</h1>
+              <FeedDivider />
+            </>
+          )}
+        </For>
+
+        <span
+          class={loadMore}
+          onClick={loadMorePosts}
+          onKeyDown={loadMorePosts}
+          role="button"
+          tabIndex={0}
+        >
+          Clique para carregar mais posts
+        </span>
+      </FeedContainer>
+    </>
   );
 }

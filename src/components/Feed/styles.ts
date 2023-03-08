@@ -13,11 +13,28 @@ export const FeedContainer = styled.div`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 
-  height: 100%;
+  min-height: 100%;
+  height: fit-content;
   width: 600px;
 
   @media (max-width: 600px) {
     width: 100%;
+  }
+`;
+
+export const MobileFeedHeader = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 5px;
+
+  span {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  @media (min-width: 600px) {
+    display: none;
   }
 `;
 
