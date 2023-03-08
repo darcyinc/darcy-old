@@ -8,6 +8,9 @@ export const FeedHeader = styled.div`
   background-color: #3a4256;
   padding: 10px;
 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
   width: 100%;
 
   > svg:hover {

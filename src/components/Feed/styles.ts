@@ -10,13 +10,11 @@ export const FeedContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  padding-bottom: 40px;
+  padding-top: 15px;
 
   width: 600px;
 
   @media (max-width: 600px) {
-    // Small screens have a bottom navbar, so we need to add some padding
-    padding-bottom: 90px;
     width: 100%;
   }
 `;
