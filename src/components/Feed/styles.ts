@@ -17,7 +17,7 @@ export const FeedContainer = styled.div`
   @media (max-width: 600px) {
     // Small screens have a bottom navbar, so we need to add some padding
     padding-bottom: 90px;
-    width: 97%;
+    width: 100%;
   }
 `;
 

@@ -1,4 +1,5 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js';
+import FeedSorter from './FeedSorter';
 import loadMoreObserver from './loadMoreObserver';
 import { FeedContainer, loadMore } from './styles';
 
@@ -49,6 +50,8 @@ export default function Feed() {
 
   return (
     <FeedContainer>
+      <FeedSorter />
+
       <span
         class={loadMore}
         onClick={loadMorePosts}

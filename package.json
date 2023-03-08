@@ -11,11 +11,13 @@
   "dependencies": {
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.7.0",
+    "@suid/icons-material": "^0.5.9",
     "solid-js": "^1.6.12",
     "solid-start": "^0.2.23",
     "solid-styled-components": "^0.28.5"
   },
   "devDependencies": {
+    "@suid/vite-plugin": "^0.1.2",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
