@@ -1,7 +1,7 @@
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 import FeedSorter from './FeedSorter';
 import loadMoreObserver from './loadMoreObserver';
-import { FeedContainer, loadMore } from './styles';
+import { FeedContainer, FeedDivider, loadMore } from './styles';
 
 export default function Feed() {
   // eslint-disable-next-line solid/reactivity
@@ -51,6 +51,8 @@ export default function Feed() {
   return (
     <FeedContainer>
       <FeedSorter />
+
+      <FeedDivider />
 
       <span
         class={loadMore}
