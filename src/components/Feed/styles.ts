@@ -10,7 +10,8 @@ export const FeedContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 
   height: 100%;
   width: 600px;
