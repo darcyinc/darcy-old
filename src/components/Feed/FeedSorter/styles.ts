@@ -10,7 +10,7 @@ export const FeedHeader = styled.div`
 
   width: 100%;
 
-  svg:hover {
+  > svg:hover {
     color: #ccc;
     cursor: pointer;
   }
@@ -18,10 +18,20 @@ export const FeedHeader = styled.div`
 
 export const SortOptions = styled.div`
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 30px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 
   label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
     margin-top: 5px;
     font-weight: bold;
   }
@@ -32,6 +42,7 @@ export const SortOptions = styled.div`
     border-radius: 5px;
     border: none;
     outline: none;
+    width: 100%;
 
     background-color: #191b22;
 
@@ -46,15 +57,4 @@ export const SortOptions = styled.div`
   }
 
   width: 100%;
-`;
-
-export const SortButton = styled.button`
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-
-    font-size: 1.1rem;
-  }
 `;
