@@ -1,26 +1,30 @@
 import { AccessTime, Sort, Tune } from '@suid/icons-material';
 import { createSignal } from 'solid-js';
 import { FeedHeader, SortOptions } from './styles';
+import type { FeedSorterData } from '~/hooks/feedSortStore';
 import { useFeedSort } from '~/hooks/feedSortStore';
 import type { SyntheticEvent } from '~/types/events';
-
-type PopularRange = '1d' | '1h' | '5h' | '7d' | '30m';
 
 export default function FeedSorter() {
   const [isMenuOpen, setIsMenuOpen] = createSignal(false);
   const [sort, setSort] = useFeedSort();
-  const [popularRange, setPopularRange] = createSignal<PopularRange>('5h');
 
   const handleSortChange = (event: SyntheticEvent<HTMLSelectElement>) => {
     const target = event.currentTarget;
-    setSort(target.value as 'newest' | 'popular');
+    setSort((sort) => ({
+      ...sort,
+      mode: target.value as FeedSorterData['mode'],
+    }));
   };
 
   const handlePopularRangeChange = (
     event: SyntheticEvent<HTMLSelectElement>
   ) => {
     const target = event.currentTarget;
-    setPopularRange(target.value as PopularRange);
+    setSort((sort) => ({
+      ...sort,
+      popularRange: target.value as FeedSorterData['popularRange'],
+    }));
   };
 
   return (
@@ -40,7 +44,7 @@ export default function FeedSorter() {
             </select>
           </div>
 
-          {sort() === 'popular' && (
+          {sort().mode === 'popular' && (
             <div>
               <label for="time-range">
                 <AccessTime />
@@ -49,7 +53,7 @@ export default function FeedSorter() {
               <select
                 id="time-range"
                 name="time-range"
-                value={popularRange()}
+                value={sort().popularRange ?? '5h'}
                 onChange={handlePopularRangeChange}
               >
                 <option value="30m">30 minutos atrás</option>
