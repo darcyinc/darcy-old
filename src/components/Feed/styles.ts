@@ -14,12 +14,8 @@ export const FeedContainer = styled.div`
   border-top-right-radius: 10px;
 
   min-height: 100%;
-  height: fit-content;
-  width: 600px;
-
-  @media (max-width: 600px) {
-    width: 100%;
-  }
+  max-width: 600px;
+  width: 100%;
 `;
 
 export const MobileFeedHeader = styled.div`
