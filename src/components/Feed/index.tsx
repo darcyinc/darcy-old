@@ -1,4 +1,5 @@
 import { createEffect, createSignal, For, onCleanup } from 'solid-js';
+import FeedPost from './FeedPost';
 import FeedSorter from './FeedSorter';
 import loadMoreObserver from './loadMoreObserver';
 import {
@@ -67,9 +68,25 @@ export default function Feed() {
         <FeedSorter />
 
         <For each={fakeArray}>
-          {(_, index) => (
+          {(_) => (
             <>
-              <h1>Post {index()}</h1>
+              <FeedPost
+                content="hey!"
+                embeds={[]}
+                hasLiked={true}
+                hasReposted={true}
+                postURL="/#"
+                stats={{
+                  comments: 0,
+                  likes: 0,
+                  reposts: 0,
+                }}
+                user={{
+                  avatar: 'https://via.placeholder.com/150',
+                  handle: 'davipatricio',
+                  name: 'Davi Patricio',
+                }}
+              />
               <FeedDivider />
             </>
           )}
