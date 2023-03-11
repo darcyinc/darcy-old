@@ -1,4 +1,6 @@
-import { AccessTime, Sort, Tune } from '@suid/icons-material';
+import { BsFilterRight } from 'solid-icons/bs';
+import { RiSystemFilter2Line } from 'solid-icons/ri';
+import { WiTime4 } from 'solid-icons/wi';
 import { createSignal } from 'solid-js';
 import { FeedHeader, SortOptions } from './styles';
 import type { FeedSorterData } from '~/hooks/feedSortStore';
@@ -29,13 +31,16 @@ export default function FeedSorter() {
 
   return (
     <FeedHeader>
-      <Tune onClick={() => setIsMenuOpen((isOpen) => !isOpen)} />
+      <RiSystemFilter2Line
+        onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+        tabIndex={0}
+      />
 
       {isMenuOpen() && (
         <SortOptions>
           <div>
             <label for="filter">
-              <Sort />
+              <BsFilterRight />
               Filtrar publicações
             </label>
             <select id="filter" name="filter" onChange={handleSortChange}>
@@ -47,7 +52,7 @@ export default function FeedSorter() {
           {sort().mode === 'popular' && (
             <div>
               <label for="time-range">
-                <AccessTime />
+                <WiTime4 />
                 Faixa de tempo
               </label>
               <select
